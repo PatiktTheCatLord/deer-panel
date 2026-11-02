@@ -1,0 +1,5 @@
+# Shows a "Sponsor" button on the GitHub repository. Fill in the accounts you open and remove the #.
+# patreon: your-patreon-name
+# ko_fi: your-kofi-name
+# github: your-github-name
+# custom: ["https://..."]

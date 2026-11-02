@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* 1200×675 Patreon tier images: Fawn (sprout), Stag (antlers), Grove (pines). */
+  .stage { background: var(--bg-tier); }
+  .art { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); width: 420px; height: 420px; display: grid; place-items: center; }
+  .art .halo { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, var(--glow), transparent 68%); }
+  .art svg, .art [data-deer] { position: relative; width: 300px; height: 300px; color: #fff; }
+  .copy { position: absolute; left: 90px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 18px; width: 620px; }
+  .kicker { font-size: 24px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--kick); display: flex; align-items: center; gap: 14px; }
+  .kicker [data-deer] { width: 34px; height: 34px; color: var(--kick); }
+  h1 { font-size: 132px; font-weight: 800; letter-spacing: -.03em; line-height: .95; }
+  .price { font-size: 44px; font-weight: 700; }
+  .price small { font-size: 26px; font-weight: 600; color: rgb(255 255 255 / .6); }
+  ul { list-style: none; display: grid; gap: 10px; margin-top: 8px; font-size: 22px; color: rgb(255 255 255 / .82); }
+  li::before { content: "✦"; color: var(--kick); margin-right: 12px; }
+  .forest { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; opacity: .5; }
+</style>
+</head>
+<body>
+<div class="stage grain" id="stage">
+  <svg class="forest" viewBox="0 0 1200 150" preserveAspectRatio="none" id="forest"></svg>
+  <div class="copy">
+    <div class="kicker"><span data-deer="mark"></span>Deer Panel supporter</div>
+    <h1 id="name"></h1>
+    <div class="price" id="price"></div>
+    <ul id="perks"></ul>
+  </div>
+  <div class="art"><div class="halo"></div><div id="art"></div></div>
+</div>
+<script src="forest.js"></script>
+<script>
+  const TIERS = {
+    fawn: {
+      name: 'Fawn', price: 3, seed: 3,
+      bg: 'radial-gradient(70% 90% at 85% 40%, rgb(16 185 129 / .30), transparent 60%), radial-gradient(60% 80% at 0% 100%, rgb(101 190 40 / .18), transparent 60%), #0b1311',
+      glow: 'rgb(52 211 153 / .35)', kick: '#6fe3ae', forest: '#0f2a22',
+      perks: ['Supporter role on Discord', 'Supporters channel', 'Monthly dev notes'],
+      // a sprout: stem and two leaves
+      art: `<svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M100 178 V96"/><path d="M100 120 C 70 120 50 100 46 70 C 76 70 98 88 100 120 Z" fill="currentColor"/>
+        <path d="M100 100 C 130 100 154 80 158 46 C 124 46 102 68 100 100 Z" fill="currentColor"/><path d="M60 180 H140"/></g></svg>`,
+    },
+    stag: {
+      name: 'Stag', price: 7, seed: 5,
+      bg: 'radial-gradient(70% 90% at 85% 40%, rgb(155 77 255 / .34), transparent 60%), radial-gradient(60% 80% at 0% 100%, rgb(109 124 255 / .24), transparent 60%), #0c0e16',
+      glow: 'rgb(140 110 255 / .45)', kick: '#b9a6ff', forest: '#1a1640',
+      perks: ['Everything in Fawn', 'Early access to beta releases', 'Vote on upcoming features', 'Coloured supporter role'],
+      art: '<span data-deer="deer"></span>',
+    },
+    grove: {
+      name: 'Grove', price: 15, seed: 9,
+      bg: 'radial-gradient(70% 90% at 85% 40%, rgb(245 183 74 / .26), transparent 60%), radial-gradient(60% 80% at 0% 100%, rgb(16 185 129 / .22), transparent 60%), #0d120f',
+      glow: 'rgb(248 207 134 / .35)', kick: '#f8cf86', forest: '#132a1d',
+      perks: ['Everything in Stag', 'Your name in the README', 'Double weight in feature votes', 'Role shown apart in the member list'],
+      // three pines
+      art: `<svg viewBox="0 0 200 200"><g fill="currentColor">
+        <path d="M44 70 L70 116 H56 L78 152 H10 L32 116 H18 Z" opacity=".8"/><rect x="39" y="152" width="10" height="22" rx="2" opacity=".8"/>
+        <path d="M156 70 L182 116 H168 L190 152 H122 L144 116 H130 Z" opacity=".8"/><rect x="151" y="152" width="10" height="22" rx="2" opacity=".8"/>
+        <path d="M100 18 L140 86 H118 L150 140 H50 L82 86 H60 Z"/><rect x="93" y="140" width="14" height="32" rx="3"/></g></svg>`,
+    },
+  };
+  const t = TIERS[new URLSearchParams(location.search).get('t') || 'stag'];
+  const stage = document.getElementById('stage');
+  stage.style.setProperty('--bg-tier', t.bg);
+  stage.style.setProperty('--glow', t.glow);
+  stage.style.setProperty('--kick', t.kick);
+  document.getElementById('name').textContent = t.name;
+  document.getElementById('price').innerHTML = `$${t.price} <small>/ month</small>`;
+  document.getElementById('perks').innerHTML = t.perks.map(p => `<li>${p}</li>`).join('');
+  document.getElementById('art').innerHTML = t.art;
+  drawForest(document.getElementById('forest'), 1200, 150, t.seed, t.forest);
+</script>
+<script src="deer.js"></script>
+</body>
+</html>

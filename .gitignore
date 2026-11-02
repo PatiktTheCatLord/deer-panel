@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Secrets and live data (never commit: tokens, member IDs, warnings, notes)
+.env
+data/
+logs/
+*.log
+
+# Desktop panel: personal connection settings and build output
+panel/config.json
+panel/dist/
+
+# Obsidian settings, if you keep notes next to the code
+.obsidian/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Release packages (npm run release) and their build stamp
+releases/
+src/build.json
+
+# Bot bundled into the panel (npm run bundle-bot)
+panel/bot/

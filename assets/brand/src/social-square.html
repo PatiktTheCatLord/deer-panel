@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* 1080×1080 announcement post. */
+  .top { position: absolute; left: 80px; right: 80px; top: 86px; display: flex; flex-direction: column; gap: 26px; z-index: 2; }
+  .brand { display: flex; align-items: center; gap: 22px; }
+  .brand [data-deer] { width: 88px; height: 88px; }
+  .wordmark { font-size: 64px; }
+  h2 { font-size: 66px; line-height: 1.08; font-weight: 800; letter-spacing: -.025em; }
+  h2 em { font-style: normal; background: linear-gradient(135deg, #9fe0b6, #f0c987); -webkit-background-clip: text; color: transparent; }
+  .pills { display: flex; flex-wrap: wrap; gap: 12px; font-size: 22px; }
+  .shot { position: absolute; left: 80px; top: 500px; width: 1100px; }
+</style>
+</head>
+<body>
+<div class="stage grain">
+  <div class="top">
+    <div class="brand"><span data-deer="icon"></span><div class="wordmark">Deer <b>Panel</b></div></div>
+    <h2>Run your Discord community<br>from <em>one friendly app.</em></h2>
+    <div class="pills"><span class="pill">Free &amp; open source</span><span class="pill">Self-hosted</span><span class="pill">English · Türkçe</span></div>
+  </div>
+  <div class="shot window"><div class="bar"><i></i><i></i><i></i><span>Deer Panel</span></div><img src="../screens/overview-dark.png"></div>
+</div>
+<script src="deer.js"></script>
+</body>
+</html>

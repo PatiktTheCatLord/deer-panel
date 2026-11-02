@@ -1,0 +1,31 @@
+{
+  "name": "deer-panel",
+  "version": "1.0.0",
+  "description": "Deer Panel Discord bot - welcome, verification, moderation, role panel, showcase, FAQ and stream alerts",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "deploy": "node src/deploy-commands.js",
+    "check": "node src/deploy-commands.js --check",
+    "check:locales": "node src/check-locales.js",
+    "release": "node deploy/make-release.mjs"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "community",
+    "moderation",
+    "self-hosted",
+    "deer-panel"
+  ],
+  "author": "PatiktTheCatLord",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "discord.js": "^14.27.0",
+    "dotenv": "^18.0.9"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

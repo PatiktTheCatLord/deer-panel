@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* 1600×400 Patreon cover. Patreon crops the sides on narrow screens and puts the avatar over the
+     bottom centre, so the words sit left of centre and the lower middle stays calm. */
+  .copy { position: absolute; left: 110px; top: 0; bottom: 60px; display: flex; flex-direction: column; justify-content: center; gap: 16px; z-index: 2; }
+  .wordmark { font-size: 84px; }
+  p { font-size: 28px; line-height: 1.35; }
+  .shot { position: absolute; right: 70px; top: 52px; width: 640px; transform: rotate(-3deg); }
+  .forest { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 1; opacity: .55; }
+</style>
+</head>
+<body>
+<div class="stage grain">
+  <svg class="forest" viewBox="0 0 1600 120" preserveAspectRatio="none" id="forest"></svg>
+  <div class="copy">
+    <div class="wordmark">Deer <b>Panel</b></div>
+    <p class="muted">Free, open-source Discord community bot<br>with a desktop control panel.</p>
+  </div>
+  <div class="shot window"><div class="bar"><i></i><i></i><i></i><span>Deer Panel</span></div><img src="../screens/overview-dark.png"></div>
+</div>
+<script src="forest.js"></script>
+<script>drawForest(document.getElementById('forest'), 1600, 120, 7);</script>
+<script src="deer.js"></script>
+</body>
+</html>

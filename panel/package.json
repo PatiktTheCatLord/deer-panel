@@ -1,0 +1,24 @@
+{
+  "name": "deer-panel-desktop",
+  "version": "1.0.0",
+  "description": "Deer Panel desktop app: controls the bot on your server through SSH",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "package": "npm run bundle-bot && electron-packager . \"Deer Panel\" --platform=win32 --arch=x64 --out=dist --overwrite --icon=assets/icon.ico --no-asar --ignore=^/dist",
+    "bundle-bot": "node scripts/bundle-bot.mjs"
+  },
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "ssh2": "^1.17.0"
+  },
+  "allowScripts": {
+    "electron@45.1.0": true
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^45.1.0"
+  },
+  "productName": "Deer Panel"
+}

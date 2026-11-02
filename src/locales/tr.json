@@ -1,0 +1,443 @@
+{
+  "_comment": "Üyelerin gördüğü Türkçe metinler. Anahtarlar en.json ile aynı; {isim} yer tutucularını bot doldurur. Eksik bir anahtar olursa İngilizcesi kullanılır.",
+  "common": {
+    "error": "❌ Bu komut çalıştırılırken bir hata oluştu!",
+    "ownerOnly": "⛔ Bu komut yalnızca bot sahibi içindir.",
+    "noPermission": "⛔ Bu komutu kullanma yetkin yok. Sunucu sahibinden botun panelinde sana yetki vermesini iste.",
+    "moduleOff": "🔌 Bu özellik bu sunucuda kapalı.",
+    "minutes": "{m} dk",
+    "hoursMinutes": "{h} sa {m} dk"
+  },
+  "help": {
+    "title": "🐾 {name} Bot — Komut Rehberi",
+    "intro": "Kullanabileceğin komutlar ve özellikler:",
+    "communityTitle": "🐾 Topluluk",
+    "faq": "• `/faq` - {name} hakkında sık sorulan soruların cevapları.",
+    "top": "• `/top` - Sıralama: mesaj ya da ses süresi.",
+    "showcase": "• {item} paylaşımını vitrin kanalına at, ❤️ topla ve **{title}** ol!",
+    "roles": "• Rol panelinden platform ve bildirim rollerini al.",
+    "generalTitle": "ℹ️ Genel Komutlar",
+    "serverinfo": "• `/serverinfo` - Sunucu istatistiklerini ve bilgilerini gösterir.",
+    "ping": "• `/ping` - Bot ve Discord API gecikmesini gösterir.",
+    "help": "• `/help` - Bu yardım menüsünü açar.",
+    "staffWelcomeTitle": "🛡️ Yetkili: Karşılama ve Otomatik Rol",
+    "welcomeSetup": "• `/welcome setup channel:#kanal message:[özel_metin]` - Karşılama kanalı ve şablonu.",
+    "welcomeOther": "• `/welcome test` / `status` / `disable`",
+    "autoroleSetup": "• `/autorole setup role:@Rol` - Katılan üyelere verilen rol.",
+    "autoroleOther": "• `/autorole status` / `disable`",
+    "staffToolsTitle": "🛡️ Yetkili: Topluluk Araçları",
+    "rolesAdmin": "• `/roles add·remove·list·panel` - Düğmeli rol paneli.",
+    "showcaseAdmin": "• `/showcase setup·status·pick·disable` - {Item} vitrini ve {title}.",
+    "modlog": "• `/modlog setup·status·disable` - Giriş/çıkış, mesaj ve moderasyon kaydı.",
+    "faqManage": "• `/faq-manage add·edit·remove` - SSS kayıtları.",
+    "staffModerationTitle": "🛡️ Yetkili: Moderasyon ve Genel Durum",
+    "setup": "• `/setup` - Tüm sistemlerin durumu ve düzeltilmesi gerekenler.",
+    "warn": "• `/warn add·list·remove·clear` - Uyarılar; uyarı sınırına gelince yetkililere haber verilir.",
+    "verify": "• `/verify setup·status·disable` - Doğrulama düğmesi.",
+    "stats": "• `/stats setup·preview·disable` - Haftalık yetkili raporu."
+  },
+  "welcome": {
+    "default": "**{server}** sunucusuna hoş geldin, {user}! 👋 **{count}.** üyemizsin. Bir merhaba de!",
+    "title": "👋 Yeni Bir Üye Katıldı!",
+    "member": "👤 Üye",
+    "total": "👥 Toplam Üye",
+    "created": "📅 Hesap Oluşturma"
+  },
+  "verify": {
+    "panelTitle": "✅ {name}'e hoş geldin!",
+    "panelText": "Lütfen kuralları oku, sonra sunucunun geri kalanını açmak için aşağıdaki düğmeye tıkla. 🐾",
+    "button": "Kuralları okudum",
+    "notSetUp": "⚠️ Doğrulama şu an ayarlı değil. Lütfen bir moderatöre yaz.",
+    "already": "✅ Zaten doğrulanmışsın. İyi eğlenceler! 🐾",
+    "tooNew": "⛔ Discord hesabın otomatik doğrulama için çok yeni (en az {days} gün). Lütfen bir moderatöre yaz.",
+    "failed": "❌ Seni şu an doğrulayamıyorum. Lütfen bir moderatöre yaz.",
+    "done": "🎉 Doğrulandın! {name}'e hoş geldin. 🐾"
+  },
+  "showcase": {
+    "winnerText": "Tebrikler {author}! 🎉\n{item} paylaşımın **{hearts}** {reaction} ile kazandı.\n\n[Gönderiye git]({url})",
+    "winnerFooter": "{footer} • {item} paylaşımını buraya at ve gelecek hafta için {reaction} topla!"
+  },
+  "top": {
+    "period": {
+      "7": "son 7 gün",
+      "30": "son 30 gün",
+      "all": "tüm zamanlar"
+    },
+    "title": {
+      "messages": "💬 En Çok Mesaj",
+      "voice": "🔊 En Çok Ses Süresi"
+    },
+    "empty": "*Burada henüz kimse yok.*",
+    "yourRank": "Senin sıran",
+    "notRanked": "Henüz sıralamada değilsin — hadi başlayalım! 🐾",
+    "ranked": "{total} kişi içinde **{rank}.** sıradasın — {label}",
+    "footer": "{footer} · /top type: period:",
+    "messages_one": "{count} mesaj",
+    "messages_other": "{count} mesaj",
+    "days_one": "{count} gün",
+    "days_other": "{count} gün"
+  },
+  "faq": {
+    "title": "❓ {name} SSS",
+    "list": "{questions}\n\nBir cevabı görmek için `/faq topic:` kullan.",
+    "empty": "*Henüz soru yok. Yetkililer `/faq-manage add` ile ekleyebilir.*",
+    "notFound": "❌ SSS kaydı bulunamadı. Yazarken önerilerden birini seç.",
+    "mightHelp": "{user}, bu işine yarayabilir:"
+  },
+  "warnings": {
+    "dm": "⚠️ **{server}** sunucusunda bir uyarı aldın.\n**Sebep:** {reason}\nSon {days} gündeki uyarıların: **{active}**."
+  },
+  "cmd": {
+    "autorole": {
+      "theRoleCanT": "Rol şu an verilemiyor: {problem}.",
+      "problem2": "⚠️ Sorun",
+      "theConfiguredRoleNo": "Ayarlanan rol artık yok. `/autorole setup` komutunu tekrar çalıştır.",
+      "problem": "⚠️ Sorun",
+      "assignedRole": "Verilen Rol",
+      "autoRoleStatus": "⚙️ Otomatik Rol Durumu",
+      "notConfigured": "`Ayarlanmadı`",
+      "newMembersWillNo": "Yeni üyelere artık otomatik rol verilmeyecek.",
+      "autoRoleDisabled": "Otomatik Rol Kapatıldı",
+      "makeSureTheBot": "Rol sıralamasında botun rolünün bu rolün üstünde kaldığından emin ol.",
+      "newMembersWillNow": "Yeni üyeler katılınca artık otomatik olarak {role} rolünü alacak.\nSunucuda **Kural Taraması** açıksa rol, üye kuralları kabul eder etmez verilir.",
+      "autoRoleConfigured": "✅ Otomatik Rol Ayarlandı",
+      "canTBeUsed": "❌ {role} otomatik rol olarak kullanılamaz: {problem}.{hint}",
+      "moveTheBotS": "\nSunucu Ayarları > Roller'de botun rolünü ({highest}) {role} rolünün **üstüne** taşı."
+    },
+    "backup": {
+      "hereIsACopy": "💾 Tüm bot verilerinin bir kopyası. Kimseyle paylaşma — uyarılar ve notlar içerir.\n{nightlyText}",
+      "noNightlyBackupsOn": "🗄️ Sunucuda henüz gece yedeği yok.",
+      "nightlyBackupsOnThe": "🗄️ Sunucudaki gece yedekleri: **{length}** (en yenisi: {slice}, {discordTimestamp} alındı)"
+    },
+    "faqManage": {
+      "faqMembersCanNow": "✅ SSS {value}: **{question}**\nÜyeler artık `/faq` kullanabilir.",
+      "thatEntryWasRemoved": "❌ Bu kayıt bu arada silinmiş.",
+      "anEntryWithThis": "❌ Bu soruyla bir kayıt zaten var. Cevabın:\n>>> {answer}",
+      "removed": "🗑️ Silindi: **{question}**",
+      "entryNotFoundPick": "❌ Kayıt bulunamadı. Yazarken önerilerden birini seç.",
+      "theFaqIsFull": "❌ SSS dolu ({MAXFAQS} kayıt). Önce bazılarını sil ya da birleştir.",
+      "added": "eklendi",
+      "updated": "güncellendi"
+    },
+    "faq": {
+      "faq": "{footer} • /faq"
+    },
+    "info": {
+      "activityCountedSinceOnly": "{footer} • Aktivite {value} tarihinden beri sayılıyor • Yalnızca sen görüyorsun",
+      "notes": "📝 Notlar ({length})",
+      "showcaseWins": "🏆 {title}: **{wins}** kez",
+      "contributions": "🐾 Katkılar",
+      "moderation": "🛡️ Moderasyon",
+      "notVerified": "⏳ Doğrulanmadı",
+      "verified": "✅ Doğrulandı",
+      "timedOutUntil": "🔇 {discordTimestamp} tarihine kadar **susturuldu**",
+      "text": "> #{id} {discordTimestamp} — {truncate}",
+      "warningsActiveAlertAt": "**Uyarılar:** {length} aktif (sınır {alertThreshold}) · {length2} toplam",
+      "noActivityRecordedYet": "⚪ Henüz aktivite kaydı yok.",
+      "activity2": "📈 Aktivite",
+      "messages7d30dTotal": "**Mesaj:** {messages7} (7g) · {messages30} (30g) · {messages} toplam\n**Ses:** {formatMinutes} (7g) · {formatMinutes2} (30g) · {formatMinutes3} toplam\n**Son mesaj:** {value}{value2}{value3}",
+      "activity": "📈 Aktivite — {activityLevel}",
+      "roles": "🎭 Roller ({length})",
+      "account": "🪪 Hesap",
+      "joinedTimesLeft": "**{joins} kez katıldı** ({leaves} kez ayrıldı) ⚠️",
+      "notInTheServer": "**Sunucuda değil**{value}",
+      "boostingSince": "**Takviye başlangıcı:** {discordTimestamp} 💎",
+      "nickname": "**Takma ad:** {nickname}",
+      "joinedServer": "**Sunucuya katılış:** {discordTimestamp} ({discordTimestamp2})",
+      "accountCreated": "**Hesap oluşturma:** {discordTimestamp} ({discordTimestamp2})",
+      "id": "**ID:** `{id}`",
+      "memberInfo": "👤 Üye Bilgisi",
+      "never": "*hiç*",
+      "rank": "\n**Sıra:** {total} aktif üye içinde {position}. (30g)",
+      "favouriteChannels": "\n**Favori kanallar:** {channels}",
+      "level": {
+        "veryActive": "🔥 Çok aktif",
+        "active": "🟢 Aktif",
+        "occasional": "🟡 Ara sıra aktif",
+        "inactive": "⚪ Aktif değil"
+      }
+    },
+    "modlog": {
+      "problems": "⚠️ Sorunlar",
+      "loggedEvents2": "Kaydedilen olaylar",
+      "notConfigured": "`Ayarlanmadı`",
+      "modLogStatus": "⚙️ Mod Kaydı Durumu",
+      "missingViewAuditLog": "**Denetim Kaydını Görüntüle** izni eksik (yasaklama, atma ve susturmalar kaydedilmez).",
+      "missingIn": "{channel} kanalında eksik: {formatPermissionList}",
+      "theLogChannelWas": "Kayıt kanalı silinmiş.",
+      "modLogDisabled": "🛑 Mod kaydı kapatıldı.",
+      "check": "⚠️ Kontrol et",
+      "isVisibleToEveryone": "{channel} @everyone tarafından görülebiliyor. Kayıtlar silinen mesajları içerebilir, yalnızca yetkililere açık tut.",
+      "theBotNeedsView": "Yasaklama, atma ve susturmaları kaydetmek için botun **Denetim Kaydını Görüntüle** iznine ihtiyacı var.",
+      "loggedEvents": "Kaydedilen olaylar",
+      "logsWillBePosted": "Kayıtlar {channel} kanalına gönderilecek.",
+      "modLogConfigured": "✅ Mod Kaydı Ayarlandı",
+      "iCanTPost": "❌ {channel} kanalına yazamıyorum. Eksik izinler: {formatPermissionList}."
+    },
+    "note": {
+      "noteRemovedFrom": "🗑️ **#{id}** notu {user} kullanıcısından silindi.",
+      "hasNoNote": "❌ {user} kullanıcısının **#{id}** notu yok.",
+      "noteAddedTo": "📝 {user} kullanıcısına **#{id}** notu eklendi: {truncate}"
+    },
+    "ping": {
+      "discordApi": "Discord API",
+      "roundtripLatency": "Gidiş-dönüş gecikmesi",
+      "pong": "🏓 Pong!"
+    },
+    "roles": {
+      "youNowHave": "✅ Artık {role} rolün var.",
+      "removed": "➖ {role} kaldırıldı.",
+      "iCanTGive": "❌ Bu rolü şu an veremiyorum. Lütfen bir moderatöre haber ver.",
+      "thisRoleIsNo": "⚠️ Bu rol artık kullanılamıyor.",
+      "rolePanelPosted": "✅ Rol paneli gönderildi: {url}",
+      "iCanTPost": "❌ {channel} kanalına yazamıyorum. Eksik izinler: {formatPermissionList}.",
+      "addAtLeastOne": "⚠️ Önce `/roles add` ile en az bir rol ekle.",
+      "postedPanel": "Gönderilen panel",
+      "noRolesYetAdd": "*Henüz rol yok. `/roles add` ile ekle.*",
+      "rolePanel": "🎭 Rol Paneli ({length}/{MAXSELFROLES})",
+      "notPosted": "`Gönderilmedi`",
+      "text3": "{value} **{label}** → <@&{roleId}>{value2}",
+      "roleWasDeleted": "rol silinmiş",
+      "removedFromTheRole": "🗑️ {role} rol panelinden kaldırıldı.",
+      "isNotOnThe": "⚠️ {role} panelde değil.",
+      "thePanelCanHold": "❌ Panelde en fazla {MAXSELFROLES} rol olabilir.",
+      "thatEmojiIsNot": "❌ Bu emoji geçerli değil. Normal bir emoji ya da bu sunucunun emojilerinden birini kullan.",
+      "canTBeUsed": "❌ {role} kullanılamaz: {problem}.",
+      "text2": "{value}\n\n{value2}",
+      "pickYourRoles": "🎭 Rollerini Seç",
+      "text": "{value} <@&{roleId}>{value2}",
+      "addedToPanel": "✅ {role} rol paneline eklendi.{value2}",
+      "updatedOnPanel": "✅ {role} rol panelinde güncellendi.{value2}",
+      "panelRefreshed": " Gönderilmiş panel de güncellendi.",
+      "postPanelHint": "\nPaneli `/roles panel` ile gönder."
+    },
+    "serverinfo": {
+      "serverId": "Sunucu ID: {id}",
+      "createdOn": "📅 Oluşturulma",
+      "levelBoosts": "Seviye {premiumTier} ({value} takviye)",
+      "boostTier": "🚀 Takviye Seviyesi",
+      "voiceChannels": "🔊 Ses Kanalları",
+      "textChannels": "💬 Yazı Kanalları",
+      "roles": "🎭 Roller",
+      "totalMembers": "👥 Toplam Üye",
+      "serverOwner": "👑 Sunucu Sahibi",
+      "serverInfo": "📊 {name} Sunucu Bilgisi"
+    },
+    "setup": {
+      "workingNeedsAttentionNot": "{OK} çalışıyor • {WARN} ilgilenilmeli • {OFF} ayarlanmadı",
+      "everythingThatIsTurned": "Açık olan her şey çalışıyor. 🎉",
+      "noProblemsFound": "{OK} Sorun bulunamadı",
+      "toFix": "{WARN} Düzeltilecekler ({length})",
+      "botSetupSystemsOn": "⚙️ {name} Bot Kurulumu — {configured}/{length} sistem açık",
+      "text2": "{status} **{name}** — {text}{value}",
+      "theBotHasAdministrator": "Botta **Yönetici** izni var. Buna ihtiyacı yok — güvenlik için kaldırmayı düşün.",
+      "botIsMissingServer": "Botta eksik sunucu izinleri: {formatPermissionList}.",
+      "entr": "{faqCount} kayıt",
+      "faq": "❓ SSS",
+      "weeklyReport": "📊 Haftalık rapor",
+      "modLog": "🛡️ Mod kaydı",
+      "modLogIsVisible": "Mod kaydı: {modChannel} @everyone tarafından görülebiliyor.",
+      "showcase": "🏆 {Item} vitrini",
+      "notConfigured4": "ayarlanmadı",
+      "roleS": "{length} rol{value}",
+      "rolePanel": "🎭 Rol paneli",
+      "rolePanelRolesAre": "Rol paneli: roller eklendi ama panel gönderilmedi (`/roles panel`).",
+      "notConfigured3": "ayarlanmadı",
+      "in": "<@&{roleId}> · <#{channelId}>",
+      "verification": "✅ Doğrulama",
+      "notConfigured2": "ayarlanmadı",
+      "autoRole": "🎭 Otomatik rol",
+      "welcome": "👋 Karşılama",
+      "text": "{label}: {role} — {problem}.",
+      "theRoleWasDeleted": "{label}: rol silinmiş.",
+      "missingIn": "{label}: {channel} kanalında eksik {formatPermissionList}.",
+      "theChannelWasDeleted": "{label}: kanal silinmiş.",
+      "channelDeleted": "kanal silinmiş",
+      "notConfigured": "ayarlanmadı"
+    },
+    "showcase": {
+      "runShowcaseSetupFirst": "⚠️ Önce `/showcase setup` çalıştır.",
+      "nextVote2": "Sonraki oylama",
+      "noneYet": "`Henüz yok`",
+      "currentWinner": "Şu anki kazanan",
+      "winnerRole2": "Kazanan rolü",
+      "notConfigured": "`Ayarlanmadı`",
+      "showcaseStatus": "⚙️ {Item} Vitrini Durumu",
+      "noMoreReactionsAnd": "Artık tepki eklenmeyecek ve haftalık oylama yapılmayacak.",
+      "showcaseDisabled": "{Item} Vitrini Kapatıldı",
+      "winnerRole": "Kazanan rolü",
+      "nextVote": "Sonraki oylama",
+      "everyPictureOrVideo": "{channel} kanalına atılan her resim ya da videoya oylama için {reaction} tepkisi eklenir.\nSon {windowDays} günün en çok kalp alan gönderisi **{title}** olur.",
+      "showcaseConfigured": "✅ {Item} Vitrini Ayarlandı",
+      "canTBeUsed": "❌ {role} kazanan rolü olarak kullanılamaz: {problem}.",
+      "iCanTRun": "❌ Vitrini {channel} kanalında çalıştıramıyorum. Eksik izinler: {formatPermissionList}."
+    },
+    "stats": {
+      "weeklyReportDisabled": "🛑 Haftalık rapor kapatıldı.",
+      "weeklyReportsWillBe": "✅ Haftalık raporlar {channel} kanalına gönderilecek. Sonraki rapor: {discordTimestamp}.\nŞimdiye kadarki sayılar için `/stats preview` kullan.",
+      "iCanTPost": "❌ {channel} kanalına yazamıyorum. Eksik izinler: {formatPermissionList}."
+    },
+    "top": {
+      "text": "{value} <@{userId}> — {label}"
+    },
+    "verify": {
+      "verified": "{user} doğrulandı.",
+      "memberVerified": "✅ Üye Doğrulandı",
+      "triedToVerifyBut": "{user} doğrulanmayı denedi ama hesabı yalnızca **{floor}** günlük (en az {minAccountAgeDays}).",
+      "verificationBlockedNewAccount": "⛔ Doğrulama Engellendi — Yeni Hesap",
+      "verificationDisabledAndThe": "🛑 Doğrulama kapatıldı ve panel kaldırıldı. Üyelerin rol olmadan da sunucuyu görebildiğinden emin ol.",
+      "noLimit2": "Sınır yok",
+      "dayS2": "{minAccountAgeDays} gün",
+      "minimumAccountAge2": "En düşük hesap yaşı",
+      "notConfigured": "`Ayarlanmadı`",
+      "verificationStatus": "⚙️ Doğrulama Durumu",
+      "nextSteps": "Sonraki adımlar",
+      "noLimit": "Sınır yok",
+      "dayS": "{minAccountAgeDays} gün",
+      "minimumAccountAge": "En düşük hesap yaşı",
+      "membersGetAfterClicking": "{url}\nÜyeler düğmeye tıklayınca {role} rolünü alır.",
+      "verificationPanelPosted": "✅ Doğrulama Paneli Gönderildi",
+      "autoRoleIsStill": "⚠️ Otomatik rol (<@&{autoRoleId}>) hâlâ açık. Yalnızca doğrulamadan sonra verilecekse `/autorole disable` ile kapat.",
+      "keepVisibleForEveryone": "Yeni üyelerin paneli görebilmesi için {channel} kanalını @everyone'a açık tut.",
+      "giveThePermissionsMembers": "{role} rolüne üyelerin ihtiyaç duyduğu izinleri ver ve diğer kanallarda @everyone'dan **Kanalları Görüntüle** iznini kaldır.",
+      "iCanTPost": "❌ {channel} kanalına yazamıyorum. Eksik izinler: {formatPermissionList}.",
+      "canTBeUsed": "❌ {role} kullanılamaz: {problem}."
+    },
+    "warn": {
+      "clearedWarningSOf": "🧹 {user} kullanıcısının {count} uyarısı temizlendi.",
+      "warningRemovedFrom": "🗑️ **#{id}** uyarısı {user} kullanıcısından kaldırıldı.",
+      "hasNoWarning": "❌ {user} kullanıcısının **#{id}** uyarısı yok.",
+      "activeLastDaysExpired": "{footer} • 🟡 aktif (son {windowDays} gün) ⚪ süresi dolmuş",
+      "noWarnings": "*Uyarı yok.* ✨",
+      "warningsActiveTotal": "Uyarılar: {size} aktif / {length} toplam",
+      "by": "{value} **#{id}** • {discordTimestamp} · <@{moderatorId}>\n> {truncate}",
+      "alertLevelReachedThe": "🚨 Uyarı sınırına ulaşıldı — yetkililere haber verildi. Otomatik bir işlem yapılmadı.",
+      "couldNotDmThe": "📭 Üyeye DM gönderilemedi (DM'leri kapalı).",
+      "wasWarnedActiveIn": "⚠️ {user} uyarıldı (son {windowDays} günde **{active}** aktif, sınır {alertThreshold}).",
+      "text": "❌ {problem}",
+      "thatUserIsNot": "❌ Bu kullanıcı bu sunucunun üyesi değil.",
+      "youCanOnlyWarn": "Yalnızca en yüksek rolü seninkinden düşük olan üyeleri uyarabilirsin.",
+      "theServerOwnerCan": "Sunucu sahibi uyarılamaz.",
+      "botsCanTBe": "Botlar uyarılamaz.",
+      "youCanTWarn": "Kendini uyaramazsın."
+    },
+    "welcome": {
+      "testWelcomeMessageSent": "✅ Deneme karşılama mesajı {channel} kanalına gönderildi.",
+      "welcomeToTheCommunity": "👋 Topluluğa Hoş Geldin! (deneme)",
+      "iCanTPost2": "❌ {channel} kanalına yazamıyorum. Eksik izinler: {formatPermissionList}.",
+      "theConfiguredChannelCould": "⚠️ Ayarlanan kanal bulunamadı! Lütfen `/welcome setup` komutunu tekrar çalıştır.",
+      "noWelcomeChannelConfigured": "⚠️ Henüz karşılama kanalı ayarlanmadı. Lütfen önce `/welcome setup` çalıştır.",
+      "customMessage": "Özel Mesaj",
+      "welcomeSystemConfiguration": "⚙️ Karşılama Sistemi Ayarları",
+      "defaultTemplate": "*Varsayılan şablon*",
+      "notConfigured": "`Ayarlanmadı`",
+      "welcomeMessagesWillNo": "Yeni üyeler için artık karşılama mesajı gönderilmeyecek.",
+      "welcomeSystemDisabled": "Karşılama Sistemi Kapatıldı",
+      "useWelcomeTestTo": "Karşılama mesajını önizlemek için \"/welcome test\" kullan.",
+      "availablePlaceholders": "Kullanılabilir Yer Tutucular",
+      "theDefaultTemplateWill": "*Varsayılan şablon kullanılacak.*",
+      "newMembersWillBe": "Yeni üyeler {channel} kanalında karşılanacak.",
+      "welcomeSystemConfigured": "✅ Karşılama Sistemi Ayarlandı",
+      "iCanTPost": "❌ {channel} kanalına yazamıyorum. Eksik izinler: {formatPermissionList}."
+    }
+  },
+  "staff": {
+    "modlog": {
+      "modLog": "{footer} • Mod Kaydı{value}"
+    },
+    "moderation": {
+      "alertAt": "{active} (sınır {alertThreshold})",
+      "activeWarnings": "Aktif uyarılar",
+      "wasWarned": "{user} uyarıldı.{value}",
+      "memberWarned": "⚠️ Üye Uyarıldı (#{id})",
+      "nowHasActiveWarnings": "{value}🚨 {user} kullanıcısının artık **{active}** aktif uyarısı var (sınır: {alertThreshold}, son {windowDays} gün). Son uyarı: *{reason}*\nLütfen incele — otomatik bir işlem yapılmadı."
+    },
+    "stats": {
+      "nextReport": "{footer} • Sonraki rapor",
+      "noneYet": "*Henüz yok*",
+      "text3": "🏆 {title}",
+      "warningsGiven": "Verilen uyarı: **{length}**",
+      "moderation": "🛡️ Moderasyon",
+      "total": "Toplam: **{messages}**\n{value}",
+      "messages": "💬 Mesajlar",
+      "joinedLeftNetTotal": "📥 Katılan: **{joins}**\n📤 Ayrılan: **{leaves}**\n📈 Net: **{value}{net}**\nŞu anki toplam: **{memberCount}**",
+      "members": "👥 Üyeler",
+      "text2": "{discordTimestamp} → {discordTimestamp2}",
+      "weeklyServerReport": "📊 Haftalık Sunucu Raporu",
+      "text": "{value}. <#{channelId}> — **{count}**"
+    },
+    "showcase": {
+      "wonWith": "🏆 {author} **{hearts}** {reaction} ile kazandı: {url}",
+      "text": "🏆 {title}",
+      "noPostInThe": "Son {windowDays} günde hiçbir gönderi {reaction} almadı, bu sefer kazanan yok.",
+      "theShowcaseChannelIs": "Vitrin kanalı ayarlanmadı.",
+      "roleWasDeleted": "rol silinmiş"
+    },
+    "members": {
+      "theRoleIsAbove": "rol, botun en yüksek rolüyle aynı seviyede ya da üstünde",
+      "everyoneCannotBeAssigned": "@everyone verilemez",
+      "theRoleIsManaged": "rol bir entegrasyon ya da başka bir bot tarafından yönetiliyor",
+      "theBotIsMissing": "botta `Rolleri Yönet` izni yok"
+    }
+  },
+  "event": {
+    "guildMemberAdd": {
+      "membersNow": "Şu anki üye sayısı",
+      "accountCreated": "Hesap oluşturma",
+      "joinedTheServer": "{user} sunucuya katıldı.",
+      "memberJoined": "📥 Üye Katıldı",
+      "memberJoinedNewAccount": "📥 Üye Katıldı — ⚠️ Yeni Hesap"
+    },
+    "guildMemberRemove": {
+      "membersNow": "Şu anki üye sayısı",
+      "leftTheServerKicks": "{user} sunucudan ayrıldı. (Atma ve yasaklamalar ayrıca kaydedilir.)",
+      "memberLeft": "📤 Üye Ayrıldı"
+    },
+    "messageDelete": {
+      "messageByDeletedIn": "{author} kullanıcısının mesajı {channel} kanalında silindi\n{quote}",
+      "messageDeleted2": "🗑️ Mesaj Silindi",
+      "anOlderMessageWas": "{channel} kanalında eski bir mesaj silindi. (İçeriği önbellekte yoktu.)",
+      "messageDeleted": "🗑️ Mesaj Silindi",
+      "deletedBy": "Silen",
+      "by": {
+        "moderator": "Bir moderatör",
+        "bot": "Bir bot",
+        "author": "Mesajın sahibi",
+        "unknown": "Bilinmiyor (denetim kaydı yok)"
+      }
+    },
+    "messageUpdate": {
+      "editedAMessageIn": "{author}, {channel} kanalında bir mesajı düzenledi — [git]({url})",
+      "messageEdited": "✏️ Mesaj Düzenlendi"
+    },
+    "guildAuditLogEntryCreate": {
+      "sTimeoutWasRemoved": "{who} kullanıcısının susturması kaldırıldı.",
+      "timeoutRemoved": "🔊 Susturma Kaldırıldı",
+      "memberTimedOut": "🔇 Üye Susturuldu",
+      "wasKicked": "{who} atıldı.",
+      "memberKicked": "👢 Üye Atıldı",
+      "wasUnbanned": "{who} kullanıcısının yasağı kaldırıldı.",
+      "memberUnbanned": "🕊️ Yasak Kaldırıldı",
+      "wasBanned": "{who} yasaklandı.",
+      "memberBanned": "🔨 Üye Yasaklandı",
+      "noReasonGiven": "*Sebep belirtilmedi*",
+      "unknownUser": "Bilinmeyen kullanıcı"
+    },
+    "autoModerationActionExecution": {
+      "automod": "AutoMod: {ruleName}{value}",
+      "automodRule": "AutoMod kuralı"
+    }
+  },
+  "stream": {
+    "template": {
+      "content": "{role} 🔴 **{streamer}** şu an {platform}'da yayında!",
+      "title": "{title}",
+      "description": "**{game}** oynuyor — gel bir merhaba de! 👋\n\n▶️ {url}"
+    },
+    "noTitle": "Şu an yayında",
+    "noGame": "eğlenceli bir şey",
+    "category": "Kategori",
+    "ended": "yayın bitti",
+    "testTitle": "Deneme yayını — duyuru böyle görünecek"
+  }
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* 1080×1920 story / reel cover. Top ~250px and bottom ~300px stay free for the app's own UI. */
+  .top { position: absolute; left: 90px; right: 90px; top: 280px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px; z-index: 2; }
+  .top [data-deer] { width: 180px; height: 180px; }
+  .wordmark { font-size: 104px; }
+  p { font-size: 40px; line-height: 1.3; }
+  .shots { position: absolute; left: 0; right: 0; top: 880px; height: 760px; }
+  .a { position: absolute; left: 60px; top: 0; width: 900px; transform: rotate(-4deg); }
+  .b { position: absolute; left: 200px; top: 290px; width: 860px; transform: rotate(3deg); }
+</style>
+</head>
+<body>
+<div class="stage grain">
+  <div class="top">
+    <span data-deer="icon"></span>
+    <div class="wordmark">Deer <b>Panel</b></div>
+    <p class="muted">Your Discord community bot,<br>run from one desktop app.<br>Free and open source.</p>
+  </div>
+  <div class="shots">
+    <div class="a window light"><div class="bar"><i></i><i></i><i></i></div><img src="../screens/members-light.png"></div>
+    <div class="b window"><div class="bar"><i></i><i></i><i></i><span>Deer Panel</span></div><img src="../screens/overview-dark.png"></div>
+  </div>
+</div>
+<script src="deer.js"></script>
+</body>
+</html>

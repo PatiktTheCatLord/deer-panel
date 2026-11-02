@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'">
+  <title>Deer Panel</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js"></script>
+  <script src="i18n-en.js"></script>
+  <script src="translate.js"></script>
+  <script src="i18n.js"></script>
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-overview" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+    <symbol id="i-stats" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></symbol>
+    <symbol id="i-logs" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></symbol>
+    <symbol id="i-members" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-content" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    <symbol id="i-community" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-streams" viewBox="0 0 24 24"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></symbol>
+    <symbol id="i-moderation" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></symbol>
+    <symbol id="i-maintenance" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="i-connections" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01"/><path d="M6 18h.01"/></symbol>
+    <symbol id="i-permissions" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-idea" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
+  </svg>
+  <aside class="sidebar">
+    <div class="brand"><img src="../assets/icon.png" alt="" class="brand-icon"> <span>Deer <b>Panel</b></span></div>
+    <button class="profile-chip" id="profile-chip" title="Profil değiştir">
+      <span class="avatar" id="chip-avatar"></span>
+      <span class="chip-text"><span class="chip-name" id="chip-name">Profil seç</span><span class="chip-sub" id="chip-sub">Profil değiştir</span></span>
+      <span class="chip-switch">⇄</span>
+    </button>
+    <nav>
+      <div class="nav-group">Genel</div>
+      <button class="nav active" data-view="overview"><svg class="nav-icon"><use href="#i-overview"/></svg>Genel Bakış</button>
+      <button class="nav" data-view="stats"><svg class="nav-icon"><use href="#i-stats"/></svg>İstatistik</button>
+      <button class="nav" data-view="logs"><svg class="nav-icon"><use href="#i-logs"/></svg>Loglar</button>
+      <div class="nav-group">Topluluk</div>
+      <button class="nav" data-view="members"><svg class="nav-icon"><use href="#i-members"/></svg>Üyeler</button>
+      <button class="nav" data-view="content"><svg class="nav-icon"><use href="#i-content"/></svg>İçerik</button>
+      <button class="nav" data-view="community"><svg class="nav-icon"><use href="#i-community"/></svg>Topluluk</button>
+      <button class="nav" data-view="streams"><svg class="nav-icon"><use href="#i-streams"/></svg>Yayınlar</button>
+      <div class="nav-group">Moderasyon</div>
+      <button class="nav" data-view="moderation"><svg class="nav-icon"><use href="#i-moderation"/></svg>Moderasyon</button>
+      <button class="nav" data-view="permissions"><svg class="nav-icon"><use href="#i-permissions"/></svg>Yetkiler</button>
+      <div class="nav-group">Sistem</div>
+      <button class="nav" data-view="settings"><svg class="nav-icon"><use href="#i-settings"/></svg>Ayarlar</button>
+      <button class="nav" data-view="maintenance"><svg class="nav-icon"><use href="#i-maintenance"/></svg>Bakım</button>
+      <button class="nav" data-view="connections"><svg class="nav-icon"><use href="#i-connections"/></svg>Bağlantılar</button>
+    </nav>
+    <div class="sidebar-links">
+      <button class="community-link patreon" id="patreon-link" title="Patreon'da bize destek ol">
+        <span class="community-icon">❤️</span><span><b>Patreon'dan bizi destekle</b><small>Projenin gelişmesine katkı ver</small></span>
+      </button>
+      <button class="community-link" id="community-link" title="Yardım, duyurular ve öneriler için Discord sunucumuz">
+        <span class="community-icon">💬</span><span><b>Discord</b><small>Yardım · duyurular</small></span>
+      </button>
+    </div>
+    <div class="connection">
+      <span class="dot" id="connection-dot"></span>
+      <span id="connection-text">Bağlanıyor…</span>
+      <button class="link" id="reconnect" hidden>Yeniden bağlan</button>
+      <button class="ghost small appearance-button" id="appearance-button" title="Görünüm: tema ve renk">🎨</button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- Overview -->
+    <section class="view" id="view-overview">
+      <header class="view-header">
+        <h1>Genel Bakış</h1>
+        <button class="ghost" id="refresh">↻ Yenile</button>
+      </header>
+      <div class="grid two">
+        <article class="card">
+          <h2>Servis (VDS)</h2>
+          <div class="state-row">
+            <span class="badge" id="service-state">—</span>
+            <span class="muted" id="service-since"></span>
+          </div>
+          <dl class="stats">
+            <div><dt>Bellek</dt><dd id="service-memory">—</dd></div>
+            <div><dt>Yeniden başlama</dt><dd id="service-restarts">—</dd></div>
+          </dl>
+          <div class="actions">
+            <button class="primary" data-action="start">▶ Başlat</button>
+            <button data-action="restart">⟳ Yeniden başlat</button>
+            <button class="danger" data-action="stop">■ Durdur</button>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Bot</h2>
+          <div class="bot-head">
+            <img id="bot-avatar" alt="" hidden>
+            <div>
+              <div class="title" id="bot-tag">—</div>
+              <div class="muted" id="guild-name"></div>
+            </div>
+          </div>
+          <dl class="stats">
+            <div><dt>Gecikme</dt><dd id="bot-ping">—</dd></div>
+            <div><dt>Çalışma süresi</dt><dd id="bot-uptime">—</dd></div>
+            <div><dt>Üye</dt><dd id="guild-members">—</dd></div>
+          </dl>
+        </article>
+      </div>
+      <div class="grid three">
+        <article class="card stat-card tone-yellow"><svg class="stat-icon"><use href="#i-alert"/></svg><dt>Toplam uyarı</dt><dd id="count-warnings">—</dd></article>
+        <article class="card stat-card tone-red"><svg class="stat-icon"><use href="#i-logs"/></svg><dt>Özel not</dt><dd id="count-notes">—</dd></article>
+        <article class="card stat-card tone-green"><svg class="stat-icon"><use href="#i-idea"/></svg><dt>SSS girdisi</dt><dd id="count-faqs">—</dd></article>
+      </div>
+      <div class="grid two align-start">
+        <article class="card">
+          <h2>VDS sağlığı</h2>
+          <div id="health"></div>
+          <div id="memory-chart"></div>
+        </article>
+        <article class="card">
+          <h2>🚨 Uyarı seviyesindeki üyeler</h2>
+          <ul class="entries" id="flagged"></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Logs -->
+    <section class="view" id="view-logs" hidden>
+      <header class="view-header">
+        <h1>Loglar</h1>
+        <div class="toolbar">
+          <input id="log-filter" type="search" placeholder="Filtrele…">
+          <label class="check"><input type="checkbox" id="log-errors"> Sadece hatalar</label>
+          <label class="check"><input type="checkbox" id="log-deletes"> 🗑️ Silinen mesajlar</label>
+          <label class="check"><input type="checkbox" id="log-follow" checked> Otomatik kaydır</label>
+          <button class="ghost" id="log-clear">Temizle</button>
+        </div>
+      </header>
+      <div class="log" id="log"></div>
+    </section>
+
+    <!-- Members -->
+    <section class="view" id="view-members" hidden>
+      <header class="view-header">
+        <h1>Üyeler</h1>
+        <div class="toolbar">
+          <select id="member-filter">
+            <option value="">Tüm üyeler</option>
+            <option value="new">🆕 Yeni hesaplar (7 günden genç)</option>
+            <option value="unverified">⏳ Doğrulanmamış</option>
+            <option value="inactive">💤 30 gündür yazmayan</option>
+            <option value="warned">⚠️ Aktif uyarısı olan</option>
+            <option value="timedout">🔇 Timeout'ta</option>
+          </select>
+          <button class="ghost" id="member-export">⬇ CSV</button>
+        </div>
+      </header>
+      <div class="members">
+        <div class="member-list-wrap card">
+          <input id="member-search" type="search" placeholder="İsim veya ID ara…">
+          <ul class="member-list" id="member-list"></ul>
+        </div>
+        <div class="profile card" id="profile"><p class="muted empty">Soldan bir üye seç.</p></div>
+      </div>
+    </section>
+
+    <!-- Moderation -->
+    <section class="view" id="view-moderation" hidden>
+      <header class="view-header">
+        <h1>Moderasyon</h1>
+        <div class="toolbar">
+          <select id="modlog-type">
+            <option value="">Tüm işlemler</option>
+            <option value="warning">⚠️ Uyarı</option>
+            <option value="timeout">🔇 Timeout</option>
+            <option value="untimeout">🔊 Timeout kaldırma</option>
+            <option value="kick">👢 Kick</option>
+            <option value="ban">🔨 Ban</option>
+            <option value="unban">🕊️ Ban kaldırma</option>
+          </select>
+          <select id="modlog-days">
+            <option value="">Tüm zamanlar</option>
+            <option value="1">Son 24 saat</option>
+            <option value="7">Son 7 gün</option>
+            <option value="30">Son 30 gün</option>
+          </select>
+          <button class="ghost" id="modlog-refresh">↻ Yenile</button>
+        </div>
+      </header>
+      <div class="grid two align-start wide-left">
+        <div class="card table-wrap"><table class="table" id="modlog-table"></table></div>
+        <div>
+          <article class="card">
+            <h2>🔎 Notlarda ve uyarılarda ara</h2>
+            <input type="search" id="search-input" placeholder="En az 2 harf…">
+            <ul class="entries" id="search-results"></ul>
+          </article>
+          <article class="card spaced">
+            <h2>🔨 Banlılar</h2>
+            <ul class="entries" id="ban-list"></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="view" id="view-content" hidden>
+      <header class="view-header">
+        <h1>İçerik</h1>
+        <div class="tabs" id="content-tabs">
+          <button class="tab active" data-tab="rules">📜 Kurallar</button>
+          <button class="tab" data-tab="roles">🎭 Rol paneli</button>
+          <button class="tab" data-tab="say">💬 Mesaj</button>
+          <button class="tab" data-tab="poll">📊 Anket</button>
+        </div>
+      </header>
+      <div id="content-body"></div>
+    </section>
+
+    <!-- Community -->
+    <section class="view" id="view-streams" hidden>
+      <header class="view-header">
+        <h1>Yayınlar</h1>
+        <button class="ghost" id="streams-check">↻ Şimdi kontrol et</button>
+      </header>
+      <p class="muted small view-intro">Kick, Twitch ve YouTube kanallarını ekle — biri yayına başlayınca bot seçtiğin kanalda duyurur. Her yayın bir kez duyurulur.</p>
+      <div class="grid two align-start">
+        <div class="stack">
+          <article class="card" id="streams-list-card"></article>
+          <article class="card form" id="streams-target-card"></article>
+          <article class="card form" id="streams-keys-card" data-fold="closed"></article>
+        </div>
+        <div class="stack">
+          <article class="card form" id="streams-template-card"></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-community" hidden>
+      <header class="view-header">
+        <h1>Topluluk</h1>
+        <button class="ghost" id="community-refresh">↻ Yenile</button>
+      </header>
+      <div class="grid two align-start">
+        <article class="card">
+          <h2>🏆 Haftalık seçim — bu haftanın adayları</h2>
+          <p class="muted small" id="showcase-info"></p>
+          <div class="candidates" id="showcase-candidates"></div>
+          <div class="actions"><button class="primary" id="showcase-pick">🏆 Şimdi seç ve duyur</button></div>
+        </article>
+        <article class="card">
+          <h2>📊 Haftalık rapor — önizleme</h2>
+          <p class="muted small" id="report-info"></p>
+          <div class="discord-preview" id="report-preview"></div>
+          <div class="actions"><button class="primary" id="report-send">📨 Şimdi gönder</button></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="view" id="view-permissions" hidden>
+      <header class="view-header">
+        <h1>Yetkiler</h1>
+        <div class="toolbar">
+          <span class="badge warn" id="perm-dirty" hidden>Kaydedilmemiş değişiklik</span>
+          <button class="ghost" id="perm-reset">↺ Geri al</button>
+          <button class="primary" id="perm-save" disabled>💾 Kaydet</button>
+        </div>
+      </header>
+      <p class="muted small view-intro">Botun yetkili komutlarını kimin kullanabileceğini seç: bir role (o role sahip herkes) ya da doğrudan bir kişiye. Bir komutu birine açınca Discord'da herkesin komut listesinde görünür; yetkisi olmayanlar kullanmaya çalışınca bot reddeder.</p>
+      <div class="stack">
+        <article class="card" id="perm-basics"></article>
+        <div class="stack" id="perm-rules"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-stats" hidden>
+      <header class="view-header">
+        <h1>İstatistik <span class="muted small">son 30 gün</span></h1>
+        <div class="toolbar">
+          <button class="primary" id="stats-leaderboards">🏅 Sıralamalar</button>
+          <button class="ghost" id="stats-refresh">↻ Yenile</button>
+        </div>
+      </header>
+      <div class="grid two" id="charts"></div>
+    </section>
+
+    <!-- Settings & FAQ -->
+    <section class="view" id="view-settings" hidden>
+      <header class="view-header"><h1>Ayarlar</h1></header>
+      <div class="card" data-fold="closed">
+        <h2>Modüller</h2>
+        <p class="muted small" id="modules-info"></p>
+        <div class="modules" id="modules-list"></div>
+      </div>
+      <div class="grid two align-start">
+        <form class="card form" id="settings-form">
+          <h2>Kanallar ve roller</h2>
+          <div id="settings-fields"></div>
+          <div class="actions"><button class="primary" type="submit">💾 Kaydet</button></div>
+        </form>
+        <div class="card" data-fold="closed">
+          <h2>SSS (/faq)</h2>
+          <form class="form" id="faq-form">
+            <input type="hidden" id="faq-id">
+            <label>Soru <input id="faq-question" maxlength="100" required></label>
+            <label>Cevap <textarea id="faq-answer" maxlength="2000" rows="4" required></textarea></label>
+            <div class="actions">
+              <button class="primary" type="submit" id="faq-save">＋ Ekle</button>
+              <button type="button" class="ghost" id="faq-cancel" hidden>Vazgeç</button>
+            </div>
+          </form>
+          <ul class="entries" id="faq-list"></ul>
+        </div>
+      </div>
+      <div class="grid two align-start">
+        <form class="card form" id="botconfig-form" data-fold="closed">
+          <h2>Bot ayarları</h2>
+          <div id="botconfig-fields"></div>
+          <div class="actions"><button class="primary" type="submit">💾 Kaydet</button></div>
+        </form>
+        <div class="card" data-fold="closed">
+          <h2>Panel</h2>
+          <label class="check"><input type="checkbox" id="autostart"> Windows açılınca paneli arka planda başlat (bildirimler için)</label>
+          <div><button class="ghost" id="settings-appearance">🎨 Görünüm: dil, tema ve renk…</button></div>
+          <div class="form-row spaced-row">
+            <input type="password" id="pin-current" placeholder="Mevcut PIN" maxlength="8" inputmode="numeric">
+            <input type="password" id="pin-new" placeholder="Yeni PIN (4–8 rakam)" maxlength="8" inputmode="numeric">
+          </div>
+          <div class="actions">
+            <button id="pin-save">🔒 PIN ayarla</button>
+            <button class="ghost" id="pin-remove">PIN'i kaldır</button>
+          </div>
+          <p class="muted small" id="pin-state"></p>
+          <h2 class="spaced">Panel işlem geçmişi</h2>
+          <ul class="entries history" id="history-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Maintenance -->
+    <section class="view" id="view-maintenance" hidden>
+      <header class="view-header"><h1>Bakım</h1></header>
+      <div class="grid two align-start">
+        <article class="card">
+          <h2>Güncelleme</h2>
+          <p class="muted">Bir sürüm paketi (<code>deer-panel-&lt;sürüm&gt;.tgz</code>, proje klasöründe <code>npm run release</code> ile oluşur) sunucuya yüklenir: önce yedek alınır, kod değişir, paketler kurulur, bot yeniden başlar. Ayarlar ve veriler değişmez; bir adım başarısız olursa eski kod geri yüklenir. Slash komutlarını bot kendisi kaydeder.</p>
+          <p class="small" id="build-info">Sunucudaki sürüm: —</p>
+          <div class="actions">
+            <button id="release-pick">📦 Paket seç…</button>
+            <button class="primary" id="deploy-run" disabled>⬆ Yükle ve güncelle</button>
+          </div>
+          <p class="muted small" id="release-info"></p>
+          <div class="log small-log" id="deploy-log"></div>
+        </article>
+        <article class="card">
+          <h2>Yedekler</h2>
+          <p class="muted">Her gece 03:30 UTC'de otomatik alınır, son 14 gün saklanır.</p>
+          <div class="actions"><button id="backup-now">💾 Şimdi yedek al</button><button class="ghost" id="backup-refresh">↻ Yenile</button></div>
+          <ul class="entries" id="backup-list"></ul>
+        </article>
+      </div>
+    </section>
+    <!-- Connections -->
+    <section class="view" id="view-connections" hidden>
+      <header class="view-header">
+        <h1>Bağlantılar</h1>
+        <button class="primary" id="profile-new">＋ Yeni bağlantı</button>
+      </header>
+      <p class="muted" id="profiles-intro">Her profil bir bot ve onun çalıştığı sunucu. Şifre ve anahtar parolası bu bilgisayarda Windows şifrelemesiyle saklanır, pencereye hiç gelmez.</p>
+      <div class="card"><h2>Profiller</h2><ul class="entries" id="profile-list"></ul></div>
+    </section>
+  </main>
+
+  <div class="picker" id="picker" hidden>
+    <button class="ghost small picker-appearance" id="picker-appearance" title="Görünüm: tema ve renk">🎨 Görünüm</button>
+    <div class="picker-inner">
+      <img src="../assets/icon.png" class="picker-logo" alt="">
+      <h1 class="picker-title">Hangi topluluğu yöneteceksin?</h1>
+      <p class="picker-sub" id="picker-sub">Bir profil seç ya da yeni bir bot bağla.</p>
+      <div class="picker-grid" id="picker-grid"></div>
+      <p class="picker-error" id="picker-error"></p>
+      <button class="ghost picker-manage" id="picker-manage">✏️ Profilleri yönet</button>
+      <div class="picker-links">
+        <button class="link picker-community" id="picker-community">💬 Yardım mı lazım? Discord sunucumuza katıl</button>
+        <button class="link picker-community" id="picker-patreon" hidden>❤️ Bizi Patreon'da destekle</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lock" id="lock" hidden>
+    <form class="lock-box" id="lock-form">
+      <img src="../assets/icon.png" alt="">
+      <h1>Deer Panel</h1>
+      <input type="password" id="lock-pin" placeholder="PIN" maxlength="8" inputmode="numeric" autofocus>
+      <button class="primary" type="submit">Kilidi aç</button>
+      <p class="muted small" id="lock-error"></p>
+    </form>
+  </div>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal">
+      <h2 id="modal-title"></h2>
+      <div id="modal-body"></div>
+      <div class="actions" id="modal-actions"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="core.js"></script>
+  <script src="views/overview.js"></script>
+  <script src="views/logs.js"></script>
+  <script src="views/members.js"></script>
+  <script src="views/moderation.js"></script>
+  <script src="views/content.js"></script>
+  <script src="views/community.js"></script>
+  <script src="views/streams.js"></script>
+  <script src="views/stats.js"></script>
+  <script src="views/permissions.js"></script>
+  <script src="views/settings.js"></script>
+  <script src="views/maintenance.js"></script>
+  <script src="views/connections.js"></script>
+  <script src="views/wizard.js"></script>
+  <script src="start.js"></script>
+</body>
+</html>

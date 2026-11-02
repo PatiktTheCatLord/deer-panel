@@ -1,0 +1,443 @@
+{
+  "_comment": "English texts members see. Copy this file (e.g. tr.json), translate the values and add the language to src/i18n.js. {name} placeholders are filled in by the bot; keys ending in _one / _other are picked by a count.",
+  "common": {
+    "error": "❌ There was an error while executing this command!",
+    "ownerOnly": "⛔ This command is only for the bot owner.",
+    "noPermission": "⛔ You don't have permission to use this command. Ask the server owner to give you access in the bot's panel.",
+    "moduleOff": "🔌 This feature is turned off on this server.",
+    "minutes": "{m}m",
+    "hoursMinutes": "{h}h {m}m"
+  },
+  "help": {
+    "title": "🐾 {name} Bot — Command Guide",
+    "intro": "Here is a list of available slash commands and features:",
+    "communityTitle": "🐾 Community",
+    "faq": "• `/faq` - Answers to common questions about {name}.",
+    "top": "• `/top` - Leaderboard: messages or voice time.",
+    "showcase": "• Post your {item} in the showcase channel and collect ❤️ to become **{title}**!",
+    "roles": "• Grab platform and notification roles from the role panel.",
+    "generalTitle": "ℹ️ General Commands",
+    "serverinfo": "• `/serverinfo` - Displays server statistics and details.",
+    "ping": "• `/ping` - Shows bot and Discord API latency.",
+    "help": "• `/help` - Opens this help menu.",
+    "staffWelcomeTitle": "🛡️ Staff: Welcome & Auto-Role",
+    "welcomeSetup": "• `/welcome setup channel:#channel message:[custom_text]` - Welcome channel and template.",
+    "welcomeOther": "• `/welcome test` / `status` / `disable`",
+    "autoroleSetup": "• `/autorole setup role:@Role` - Role given to members on join.",
+    "autoroleOther": "• `/autorole status` / `disable`",
+    "staffToolsTitle": "🛡️ Staff: Community Tools",
+    "rolesAdmin": "• `/roles add·remove·list·panel` - Button role panel.",
+    "showcaseAdmin": "• `/showcase setup·status·pick·disable` - {Item} showcase & {title}.",
+    "modlog": "• `/modlog setup·status·disable` - Join/leave, message and moderation log.",
+    "faqManage": "• `/faq-manage add·edit·remove` - FAQ entries.",
+    "staffModerationTitle": "🛡️ Staff: Moderation & Overview",
+    "setup": "• `/setup` - Status of every system and what to fix.",
+    "warn": "• `/warn add·list·remove·clear` - Warnings; the staff is alerted at the warning alert level.",
+    "verify": "• `/verify setup·status·disable` - Verification button.",
+    "stats": "• `/stats setup·preview·disable` - Weekly staff report."
+  },
+  "welcome": {
+    "default": "Welcome to **{server}**, {user}! 👋 You are member **#{count}**. Say hi!",
+    "title": "👋 A New Member Joined!",
+    "member": "👤 Member",
+    "total": "👥 Total Members",
+    "created": "📅 Account Created"
+  },
+  "verify": {
+    "panelTitle": "✅ Welcome to {name}!",
+    "panelText": "Please read the rules, then click the button below to unlock the rest of the server. 🐾",
+    "button": "I have read the rules",
+    "notSetUp": "⚠️ Verification is not set up right now. Please contact a moderator.",
+    "already": "✅ You are already verified. Have fun! 🐾",
+    "tooNew": "⛔ Your Discord account is too new to verify automatically (minimum {days} days). Please contact a moderator.",
+    "failed": "❌ I can't verify you right now. Please contact a moderator.",
+    "done": "🎉 You're verified! Welcome to {name}. 🐾"
+  },
+  "showcase": {
+    "winnerText": "Congratulations {author}! 🎉\nYour {item} won with **{hearts}** {reaction}.\n\n[Jump to the post]({url})",
+    "winnerFooter": "{footer} • Share your {item} here and collect {reaction} for next week!"
+  },
+  "top": {
+    "period": {
+      "7": "last 7 days",
+      "30": "last 30 days",
+      "all": "all time"
+    },
+    "title": {
+      "messages": "💬 Most Messages",
+      "voice": "🔊 Most Voice Time"
+    },
+    "empty": "*Nobody here yet.*",
+    "yourRank": "Your rank",
+    "notRanked": "You're not on the board yet — time to get going! 🐾",
+    "ranked": "You are **#{rank}** of {total} — {label}",
+    "footer": "{footer} · /top type: period:",
+    "messages_one": "{count} message",
+    "messages_other": "{count} messages",
+    "days_one": "{count} day",
+    "days_other": "{count} days"
+  },
+  "faq": {
+    "title": "❓ {name} FAQ",
+    "list": "{questions}\n\nUse `/faq topic:` to see an answer.",
+    "empty": "*No questions yet. Staff can add them with `/faq-manage add`.*",
+    "notFound": "❌ No FAQ entry found. Pick one from the suggestions while typing.",
+    "mightHelp": "{user}, this might help:"
+  },
+  "warnings": {
+    "dm": "⚠️ You received a warning in **{server}**.\n**Reason:** {reason}\nWarnings in the last {days} days: **{active}**."
+  },
+  "cmd": {
+    "autorole": {
+      "theRoleCanT": "The role can't be assigned right now: {problem}.",
+      "problem2": "⚠️ Problem",
+      "theConfiguredRoleNo": "The configured role no longer exists. Run `/autorole setup` again.",
+      "problem": "⚠️ Problem",
+      "assignedRole": "Assigned Role",
+      "autoRoleStatus": "⚙️ Auto-Role Status",
+      "notConfigured": "`Not configured`",
+      "newMembersWillNo": "New members will no longer receive an automatic role.",
+      "autoRoleDisabled": "Auto-Role Disabled",
+      "makeSureTheBot": "Make sure the bot's role stays above this role in role hierarchy.",
+      "newMembersWillNow": "New members will now automatically receive the {role} role upon joining.\nIf the server uses **Rules Screening**, the role is given right after a member accepts the rules.",
+      "autoRoleConfigured": "✅ Auto-Role Configured",
+      "canTBeUsed": "❌ {role} can't be used as auto-role: {problem}.{hint}",
+      "moveTheBotS": "\nMove the bot's role ({highest}) **above** {role} in Server Settings > Roles."
+    },
+    "backup": {
+      "hereIsACopy": "💾 Here is a copy of all bot data. Keep it private — it contains warnings and notes.\n{nightlyText}",
+      "noNightlyBackupsOn": "🗄️ No nightly backups on the server yet.",
+      "nightlyBackupsOnThe": "🗄️ Nightly backups on the server: **{length}** (newest: {slice}, made {discordTimestamp})"
+    },
+    "faqManage": {
+      "faqMembersCanNow": "✅ FAQ {value}: **{question}**\nMembers can now use `/faq`.",
+      "thatEntryWasRemoved": "❌ That entry was removed in the meantime.",
+      "anEntryWithThis": "❌ An entry with this question already exists. Your answer:\n>>> {answer}",
+      "removed": "🗑️ Removed: **{question}**",
+      "entryNotFoundPick": "❌ Entry not found. Pick one from the suggestions while typing.",
+      "theFaqIsFull": "❌ The FAQ is full ({MAXFAQS} entries). Remove or merge some first.",
+      "added": "added",
+      "updated": "updated"
+    },
+    "faq": {
+      "faq": "{footer} • /faq"
+    },
+    "info": {
+      "activityCountedSinceOnly": "{footer} • Activity counted since {value} • Only visible to you",
+      "notes": "📝 Notes ({length})",
+      "showcaseWins": "🏆 {title}: **{wins}** win{value}",
+      "contributions": "🐾 Contributions",
+      "moderation": "🛡️ Moderation",
+      "notVerified": "⏳ Not verified",
+      "verified": "✅ Verified",
+      "timedOutUntil": "🔇 **Timed out** until {discordTimestamp}",
+      "text": "> #{id} {discordTimestamp} — {truncate}",
+      "warningsActiveAlertAt": "**Warnings:** {length} active (alert at {alertThreshold}) · {length2} total",
+      "noActivityRecordedYet": "⚪ No activity recorded yet.",
+      "activity2": "📈 Activity",
+      "messages7d30dTotal": "**Messages:** {messages7} (7d) · {messages30} (30d) · {messages} total\n**Voice:** {formatMinutes} (7d) · {formatMinutes2} (30d) · {formatMinutes3} total\n**Last message:** {value}{value2}{value3}",
+      "activity": "📈 Activity — {activityLevel}",
+      "roles": "🎭 Roles ({length})",
+      "account": "🪪 Account",
+      "joinedTimesLeft": "**Joined {joins} times** (left {leaves}×) ⚠️",
+      "notInTheServer": "**Not in the server**{value}",
+      "boostingSince": "**Boosting since:** {discordTimestamp} 💎",
+      "nickname": "**Nickname:** {nickname}",
+      "joinedServer": "**Joined server:** {discordTimestamp} ({discordTimestamp2})",
+      "accountCreated": "**Account created:** {discordTimestamp} ({discordTimestamp2})",
+      "id": "**ID:** `{id}`",
+      "memberInfo": "👤 Member Info",
+      "never": "*never*",
+      "rank": "\n**Rank:** #{position} of {total} active members (30d)",
+      "favouriteChannels": "\n**Favourite channels:** {channels}",
+      "level": {
+        "veryActive": "🔥 Very active",
+        "active": "🟢 Active",
+        "occasional": "🟡 Occasionally active",
+        "inactive": "⚪ Inactive"
+      }
+    },
+    "modlog": {
+      "problems": "⚠️ Problems",
+      "loggedEvents2": "Logged events",
+      "notConfigured": "`Not configured`",
+      "modLogStatus": "⚙️ Mod Log Status",
+      "missingViewAuditLog": "Missing **View Audit Log** (bans, kicks and timeouts are not logged).",
+      "missingIn": "Missing in {channel}: {formatPermissionList}",
+      "theLogChannelWas": "The log channel was deleted.",
+      "modLogDisabled": "🛑 Mod log disabled.",
+      "check": "⚠️ Check",
+      "isVisibleToEveryone": "{channel} is visible to @everyone. Logs may contain deleted messages, so keep it staff-only.",
+      "theBotNeedsView": "The bot needs **View Audit Log** to log bans, kicks and timeouts.",
+      "loggedEvents": "Logged events",
+      "logsWillBePosted": "Logs will be posted in {channel}.",
+      "modLogConfigured": "✅ Mod Log Configured",
+      "iCanTPost": "❌ I can't post in {channel}. Missing permissions: {formatPermissionList}."
+    },
+    "note": {
+      "noteRemovedFrom": "🗑️ Note **#{id}** removed from {user}.",
+      "hasNoNote": "❌ {user} has no note **#{id}**.",
+      "noteAddedTo": "📝 Note **#{id}** added to {user}: {truncate}"
+    },
+    "ping": {
+      "discordApi": "Discord API",
+      "roundtripLatency": "Roundtrip Latency",
+      "pong": "🏓 Pong!"
+    },
+    "roles": {
+      "youNowHave": "✅ You now have {role}.",
+      "removed": "➖ Removed {role}.",
+      "iCanTGive": "❌ I can't give out this role right now. Please tell a moderator.",
+      "thisRoleIsNo": "⚠️ This role is no longer available.",
+      "rolePanelPosted": "✅ Role panel posted: {url}",
+      "iCanTPost": "❌ I can't post in {channel}. Missing permissions: {formatPermissionList}.",
+      "addAtLeastOne": "⚠️ Add at least one role with `/roles add` first.",
+      "postedPanel": "Posted panel",
+      "noRolesYetAdd": "*No roles yet. Add one with `/roles add`.*",
+      "rolePanel": "🎭 Role Panel ({length}/{MAXSELFROLES})",
+      "notPosted": "`Not posted`",
+      "text3": "{value} **{label}** → <@&{roleId}>{value2}",
+      "roleWasDeleted": "role was deleted",
+      "removedFromTheRole": "🗑️ {role} removed from the role panel.",
+      "isNotOnThe": "⚠️ {role} is not on the panel.",
+      "thePanelCanHold": "❌ The panel can hold at most {MAXSELFROLES} roles.",
+      "thatEmojiIsNot": "❌ That emoji is not valid. Use a normal emoji or one of this server's emojis.",
+      "canTBeUsed": "❌ {role} can't be used: {problem}.",
+      "text2": "{value}\n\n{value2}",
+      "pickYourRoles": "🎭 Pick Your Roles",
+      "text": "{value} <@&{roleId}>{value2}",
+      "addedToPanel": "✅ {role} added to the role panel.{value2}",
+      "updatedOnPanel": "✅ {role} updated on the role panel.{value2}",
+      "panelRefreshed": " The posted panel was updated.",
+      "postPanelHint": "\nPost the panel with `/roles panel`."
+    },
+    "serverinfo": {
+      "serverId": "Server ID: {id}",
+      "createdOn": "📅 Created On",
+      "levelBoosts": "Level {premiumTier} ({value} boosts)",
+      "boostTier": "🚀 Boost Tier",
+      "voiceChannels": "🔊 Voice Channels",
+      "textChannels": "💬 Text Channels",
+      "roles": "🎭 Roles",
+      "totalMembers": "👥 Total Members",
+      "serverOwner": "👑 Server Owner",
+      "serverInfo": "📊 {name} Server Info"
+    },
+    "setup": {
+      "workingNeedsAttentionNot": "{OK} working • {WARN} needs attention • {OFF} not configured",
+      "everythingThatIsTurned": "Everything that is turned on works. 🎉",
+      "noProblemsFound": "{OK} No problems found",
+      "toFix": "{WARN} To fix ({length})",
+      "botSetupSystemsOn": "⚙️ {name} Bot Setup — {configured}/{length} systems on",
+      "text2": "{status} **{name}** — {text}{value}",
+      "theBotHasAdministrator": "The bot has **Administrator**. It does not need it — consider removing it for safety.",
+      "botIsMissingServer": "Bot is missing server permissions: {formatPermissionList}.",
+      "entr": "{faqCount} entr{value}",
+      "faq": "❓ FAQ",
+      "weeklyReport": "📊 Weekly report",
+      "modLog": "🛡️ Mod log",
+      "modLogIsVisible": "Mod log: {modChannel} is visible to @everyone.",
+      "showcase": "🏆 {Item} showcase",
+      "notConfigured4": "not configured",
+      "roleS": "{length} role(s){value}",
+      "rolePanel": "🎭 Role panel",
+      "rolePanelRolesAre": "Role panel: roles are added but the panel is not posted (`/roles panel`).",
+      "notConfigured3": "not configured",
+      "in": "<@&{roleId}> in <#{channelId}>",
+      "verification": "✅ Verification",
+      "notConfigured2": "not configured",
+      "autoRole": "🎭 Auto-role",
+      "welcome": "👋 Welcome",
+      "text": "{label}: {role} — {problem}.",
+      "theRoleWasDeleted": "{label}: the role was deleted.",
+      "missingIn": "{label}: missing {formatPermissionList} in {channel}.",
+      "theChannelWasDeleted": "{label}: the channel was deleted.",
+      "channelDeleted": "channel deleted",
+      "notConfigured": "not configured"
+    },
+    "showcase": {
+      "runShowcaseSetupFirst": "⚠️ Run `/showcase setup` first.",
+      "nextVote2": "Next vote",
+      "noneYet": "`None yet`",
+      "currentWinner": "Current winner",
+      "winnerRole2": "Winner role",
+      "notConfigured": "`Not configured`",
+      "showcaseStatus": "⚙️ {Item} Showcase Status",
+      "noMoreReactionsAnd": "No more reactions and no weekly vote.",
+      "showcaseDisabled": "{Item} Showcase Disabled",
+      "winnerRole": "Winner role",
+      "nextVote": "Next vote",
+      "everyPictureOrVideo": "Every picture or video posted in {channel} gets a {reaction} reaction for voting.\nThe most-hearted post of the last {windowDays} days becomes **{title}**.",
+      "showcaseConfigured": "✅ {Item} Showcase Configured",
+      "canTBeUsed": "❌ {role} can't be used as winner role: {problem}.",
+      "iCanTRun": "❌ I can't run the showcase in {channel}. Missing permissions: {formatPermissionList}."
+    },
+    "stats": {
+      "weeklyReportDisabled": "🛑 Weekly report disabled.",
+      "weeklyReportsWillBe": "✅ Weekly reports will be posted in {channel}. Next report: {discordTimestamp}.\nUse `/stats preview` to see the numbers so far.",
+      "iCanTPost": "❌ I can't post in {channel}. Missing permissions: {formatPermissionList}."
+    },
+    "top": {
+      "text": "{value} <@{userId}> — {label}"
+    },
+    "verify": {
+      "verified": "{user} verified.",
+      "memberVerified": "✅ Member Verified",
+      "triedToVerifyBut": "{user} tried to verify, but the account is only **{floor}** day(s) old (minimum {minAccountAgeDays}).",
+      "verificationBlockedNewAccount": "⛔ Verification Blocked — New Account",
+      "verificationDisabledAndThe": "🛑 Verification disabled and the panel was removed. Make sure members can still see the server without the role.",
+      "noLimit2": "No limit",
+      "dayS2": "{minAccountAgeDays} day(s)",
+      "minimumAccountAge2": "Minimum account age",
+      "notConfigured": "`Not configured`",
+      "verificationStatus": "⚙️ Verification Status",
+      "nextSteps": "Next steps",
+      "noLimit": "No limit",
+      "dayS": "{minAccountAgeDays} day(s)",
+      "minimumAccountAge": "Minimum account age",
+      "membersGetAfterClicking": "{url}\nMembers get {role} after clicking the button.",
+      "verificationPanelPosted": "✅ Verification Panel Posted",
+      "autoRoleIsStill": "⚠️ Auto-role (<@&{autoRoleId}>) is still on. Turn it off with `/autorole disable` if it should only be given after verifying.",
+      "keepVisibleForEveryone": "Keep {channel} visible for @everyone so new members can see the panel.",
+      "giveThePermissionsMembers": "Give {role} the permissions members need, and remove **View Channels** from @everyone in the other channels.",
+      "iCanTPost": "❌ I can't post in {channel}. Missing permissions: {formatPermissionList}.",
+      "canTBeUsed": "❌ {role} can't be used: {problem}."
+    },
+    "warn": {
+      "clearedWarningSOf": "🧹 Cleared {count} warning(s) of {user}.",
+      "warningRemovedFrom": "🗑️ Warning **#{id}** removed from {user}.",
+      "hasNoWarning": "❌ {user} has no warning **#{id}**.",
+      "activeLastDaysExpired": "{footer} • 🟡 active (last {windowDays} days) ⚪ expired",
+      "noWarnings": "*No warnings.* ✨",
+      "warningsActiveTotal": "Warnings: {size} active / {length} total",
+      "by": "{value} **#{id}** • {discordTimestamp} by <@{moderatorId}>\n> {truncate}",
+      "alertLevelReachedThe": "🚨 Alert level reached — the staff was notified. Nothing was done automatically.",
+      "couldNotDmThe": "📭 Could not DM the member (DMs closed).",
+      "wasWarnedActiveIn": "⚠️ {user} was warned (**{active}** active in the last {windowDays} days, alert level {alertThreshold}).",
+      "text": "❌ {problem}",
+      "thatUserIsNot": "❌ That user is not a member of this server.",
+      "youCanOnlyWarn": "You can only warn members whose highest role is below yours.",
+      "theServerOwnerCan": "The server owner can't be warned.",
+      "botsCanTBe": "Bots can't be warned.",
+      "youCanTWarn": "You can't warn yourself."
+    },
+    "welcome": {
+      "testWelcomeMessageSent": "✅ Test welcome message sent to {channel}.",
+      "welcomeToTheCommunity": "👋 Welcome to the Community! (test)",
+      "iCanTPost2": "❌ I can't post in {channel}. Missing permissions: {formatPermissionList}.",
+      "theConfiguredChannelCould": "⚠️ The configured channel could not be found! Please re-run `/welcome setup`.",
+      "noWelcomeChannelConfigured": "⚠️ No welcome channel configured yet. Please run `/welcome setup` first.",
+      "customMessage": "Custom Message",
+      "welcomeSystemConfiguration": "⚙️ Welcome System Configuration",
+      "defaultTemplate": "*Default template*",
+      "notConfigured": "`Not configured`",
+      "welcomeMessagesWillNo": "Welcome messages will no longer be sent for new members.",
+      "welcomeSystemDisabled": "Welcome System Disabled",
+      "useWelcomeTestTo": "Use \"/welcome test\" to preview the welcome message.",
+      "availablePlaceholders": "Available Placeholders",
+      "theDefaultTemplateWill": "*The default template will be used.*",
+      "newMembersWillBe": "New members will be welcomed in {channel}.",
+      "welcomeSystemConfigured": "✅ Welcome System Configured",
+      "iCanTPost": "❌ I can't post in {channel}. Missing permissions: {formatPermissionList}."
+    }
+  },
+  "staff": {
+    "modlog": {
+      "modLog": "{footer} • Mod Log{value}"
+    },
+    "moderation": {
+      "alertAt": "{active} (alert at {alertThreshold})",
+      "activeWarnings": "Active warnings",
+      "wasWarned": "{user} was warned.{value}",
+      "memberWarned": "⚠️ Member Warned (#{id})",
+      "nowHasActiveWarnings": "{value}🚨 {user} now has **{active}** active warnings (alert level: {alertThreshold}, last {windowDays} days). Latest: *{reason}*\nPlease review — nothing was done automatically."
+    },
+    "stats": {
+      "nextReport": "{footer} • Next report",
+      "noneYet": "*None yet*",
+      "text3": "🏆 {title}",
+      "warningsGiven": "Warnings given: **{length}**",
+      "moderation": "🛡️ Moderation",
+      "total": "Total: **{messages}**\n{value}",
+      "messages": "💬 Messages",
+      "joinedLeftNetTotal": "📥 Joined: **{joins}**\n📤 Left: **{leaves}**\n📈 Net: **{value}{net}**\nTotal now: **{memberCount}**",
+      "members": "👥 Members",
+      "text2": "{discordTimestamp} → {discordTimestamp2}",
+      "weeklyServerReport": "📊 Weekly Server Report",
+      "text": "{value}. <#{channelId}> — **{count}**"
+    },
+    "showcase": {
+      "wonWith": "🏆 {author} won with **{hearts}** {reaction}: {url}",
+      "text": "🏆 {title}",
+      "noPostInThe": "No post in the last {windowDays} days got a {reaction}, so there is no winner this time.",
+      "theShowcaseChannelIs": "The showcase channel is not set up.",
+      "roleWasDeleted": "role was deleted"
+    },
+    "members": {
+      "theRoleIsAbove": "the role is above or equal to the bot's highest role",
+      "everyoneCannotBeAssigned": "@everyone cannot be assigned",
+      "theRoleIsManaged": "the role is managed by an integration or another bot",
+      "theBotIsMissing": "the bot is missing the `Manage Roles` permission"
+    }
+  },
+  "event": {
+    "guildMemberAdd": {
+      "membersNow": "Members now",
+      "accountCreated": "Account created",
+      "joinedTheServer": "{user} joined the server.",
+      "memberJoined": "📥 Member Joined",
+      "memberJoinedNewAccount": "📥 Member Joined — ⚠️ New Account"
+    },
+    "guildMemberRemove": {
+      "membersNow": "Members now",
+      "leftTheServerKicks": "{user} left the server. (Kicks and bans are logged separately.)",
+      "memberLeft": "📤 Member Left"
+    },
+    "messageDelete": {
+      "messageByDeletedIn": "Message by {author} deleted in {channel}\n{quote}",
+      "messageDeleted2": "🗑️ Message Deleted",
+      "anOlderMessageWas": "An older message was deleted in {channel}. (Its content was not cached.)",
+      "messageDeleted": "🗑️ Message Deleted",
+      "deletedBy": "Deleted by",
+      "by": {
+        "moderator": "A moderator",
+        "bot": "A bot",
+        "author": "The author",
+        "unknown": "Unknown (no audit log entry)"
+      }
+    },
+    "messageUpdate": {
+      "editedAMessageIn": "{author} edited a message in {channel} — [jump]({url})",
+      "messageEdited": "✏️ Message Edited"
+    },
+    "guildAuditLogEntryCreate": {
+      "sTimeoutWasRemoved": "{who}'s timeout was removed.",
+      "timeoutRemoved": "🔊 Timeout Removed",
+      "memberTimedOut": "🔇 Member Timed Out",
+      "wasKicked": "{who} was kicked.",
+      "memberKicked": "👢 Member Kicked",
+      "wasUnbanned": "{who} was unbanned.",
+      "memberUnbanned": "🕊️ Member Unbanned",
+      "wasBanned": "{who} was banned.",
+      "memberBanned": "🔨 Member Banned",
+      "noReasonGiven": "*No reason given*",
+      "unknownUser": "Unknown user"
+    },
+    "autoModerationActionExecution": {
+      "automod": "AutoMod: {ruleName}{value}",
+      "automodRule": "AutoMod rule"
+    }
+  },
+  "stream": {
+    "template": {
+      "content": "{role} 🔴 **{streamer}** is live on {platform}!",
+      "title": "{title}",
+      "description": "Playing **{game}** — come say hi! 👋\n\n▶️ {url}"
+    },
+    "noTitle": "Live now",
+    "noGame": "something fun",
+    "category": "Category",
+    "ended": "stream ended",
+    "testTitle": "Test stream — this is how the announcement looks"
+  }
+}

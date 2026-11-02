@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the Deer Panel data backup every night
+
+[Timer]
+OnCalendar=*-*-* 03:30:00 UTC
+# Catch up after the server was off at backup time.
+Persistent=true
+RandomizedDelaySec=5min
+
+[Install]
+WantedBy=timers.target

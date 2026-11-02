@@ -1,0 +1,13 @@
+[Unit]
+Description=Deer Panel daily data backup
+
+[Service]
+Type=oneshot
+User=deerpanel
+Group=deerpanel
+ExecStart=/bin/sh /opt/deerpanel/deploy/backup.sh
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/deerpanel/backups

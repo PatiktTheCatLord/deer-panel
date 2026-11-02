@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* 1600×480 header for the top of the README. */
+  .stage { border-radius: 28px; }
+  html, body { background: transparent; }
+  .copy { position: absolute; left: 96px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 22px; z-index: 2; }
+  .brand { display: flex; align-items: center; gap: 26px; }
+  .brand [data-deer] { width: 112px; height: 112px; }
+  .wordmark { font-size: 96px; }
+  p { font-size: 30px; line-height: 1.4; max-width: 700px; }
+  .shot { position: absolute; right: -60px; top: 70px; width: 760px; transform: rotate(-4deg); }
+  .shot2 { position: absolute; right: 360px; top: 150px; width: 520px; transform: rotate(3deg); opacity: .96; }
+</style>
+</head>
+<body>
+<div class="stage grain">
+  <div class="copy">
+    <div class="brand"><span data-deer="icon"></span><div class="wordmark">Deer <b>Panel</b></div></div>
+    <p class="muted">A free, open-source Discord community bot, managed from a friendly desktop app.</p>
+  </div>
+  <div class="shot2 window light"><div class="bar"><i></i><i></i><i></i></div><img src="../screens/members-light.png"></div>
+  <div class="shot window"><div class="bar"><i></i><i></i><i></i><span>Deer Panel</span></div><img src="../screens/overview-dark.png"></div>
+</div>
+<script src="deer.js"></script>
+</body>
+</html>

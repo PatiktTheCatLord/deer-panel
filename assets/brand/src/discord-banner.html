@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* 960×540 Discord server banner (shown small at the top of the channel list, so: big and simple). */
+  .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; z-index: 2; padding-bottom: 60px; }
+  .center [data-deer] { width: 150px; height: 150px; }
+  .wordmark { font-size: 96px; }
+  p { font-size: 28px; }
+  .forest { position: absolute; left: 0; right: 0; bottom: 0; height: 170px; opacity: .7; }
+</style>
+</head>
+<body>
+<div class="stage grain">
+  <svg class="forest" viewBox="0 0 960 170" preserveAspectRatio="none" id="forest"></svg>
+  <div class="center">
+    <span data-deer="icon"></span>
+    <div class="wordmark">Deer <b>Panel</b></div>
+    <p class="muted">Community · Support · Releases</p>
+  </div>
+</div>
+<script src="forest.js"></script>
+<script>drawForest(document.getElementById('forest'), 960, 170, 11);</script>
+<script src="deer.js"></script>
+</body>
+</html>

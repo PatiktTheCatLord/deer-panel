@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  html, body { background: transparent; }
+  .row { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; gap: 56px; }
+  .row [data-deer] { width: 260px; height: 260px; }
+  .wordmark { font-size: 176px; }
+  .on-light .wordmark { color: #161a24; }
+  .on-light .wordmark b { background: linear-gradient(135deg, #2f7a5c, #b0782c); -webkit-background-clip: text; }
+</style>
+</head>
+<body>
+<div class="row" id="row">
+  <span data-deer="icon"></span>
+  <div class="wordmark">Deer <b>Panel</b></div>
+</div>
+<script>
+  document.getElementById('row').classList.add('on-' + (new URLSearchParams(location.search).get('on') || 'dark'));
+</script>
+<script src="deer.js"></script>
+</body>
+</html>

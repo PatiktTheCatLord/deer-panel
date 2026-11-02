@@ -1,0 +1,30 @@
+[Unit]
+Description=Deer Panel community Discord bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=deerpanel
+Group=deerpanel
+WorkingDirectory=/opt/deerpanel
+ExecStart=/usr/bin/node src/index.js
+Environment=NODE_ENV=production
+# The server is short on RAM; the bot normally uses ~100 MB.
+Environment=NODE_OPTIONS=--max-old-space-size=256
+MemoryMax=400M
+Restart=always
+RestartSec=10
+# SIGINT lets the bot save its activity counters before it exits.
+KillSignal=SIGINT
+TimeoutStopSec=20
+
+# Hardening: the bot can only write to its own data folder.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/deerpanel/data
+
+[Install]
+WantedBy=multi-user.target

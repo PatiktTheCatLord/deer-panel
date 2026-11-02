@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* 1280×640 GitHub social preview. GitHub may crop ~40px at the edges, so text stays inside. */
+  .copy { position: absolute; left: 80px; top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; gap: 26px; z-index: 2; }
+  .brand { display: flex; align-items: center; gap: 22px; }
+  .brand [data-deer] { width: 92px; height: 92px; }
+  .wordmark { font-size: 72px; }
+  h2 { font-size: 34px; line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
+  p { font-size: 22px; line-height: 1.45; }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; font-size: 17px; }
+  .shot { position: absolute; left: 690px; top: 92px; width: 860px; transform: perspective(1800px) rotateY(-14deg) rotateX(4deg); transform-origin: left center; }
+</style>
+</head>
+<body>
+<div class="stage grain">
+  <div class="copy">
+    <div class="brand"><span data-deer="icon"></span><div class="wordmark">Deer <b>Panel</b></div></div>
+    <h2>Your Discord community, run from one desktop app.</h2>
+    <p class="muted">Free and open source. Your bot, your server, your data.</p>
+    <div class="pills"><span class="pill">Self-hosted</span><span class="pill">Free &amp; open source</span><span class="pill">EN · TR</span></div>
+  </div>
+  <div class="shot window"><div class="bar"><i></i><i></i><i></i><span>Deer Panel</span></div><img src="../screens/overview-dark.png"></div>
+</div>
+<script src="deer.js"></script>
+</body>
+</html>

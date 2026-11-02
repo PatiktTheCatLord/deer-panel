@@ -1,0 +1,96 @@
+/* Shared look of the brand images: forest green and warm gold around the deer logo (deer.js). */
+:root {
+  --bg: #0b100e;
+  --panel: #151922;
+  --text: #eef0f6;
+  --muted: #8a92a6;
+  --accent: #5fbf8f;
+  --accent-2: #e8b46a;
+  --deep: #2f5b4c;
+  --gradient: linear-gradient(135deg, #3a6e5c, #2a5144);
+  --font: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-deer] { display: inline-block; line-height: 0; }
+[data-deer] svg { display: block; }
+
+/* Night-sky background: soft accent glows over the panel's dark base. */
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 80% at 85% 10%, rgb(63 150 112 / .30), transparent 60%),
+    radial-gradient(55% 70% at 10% 100%, rgb(212 154 95 / .20), transparent 60%),
+    var(--bg);
+}
+
+.stage.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgb(255 255 255 / .06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+  pointer-events: none;
+}
+
+.wordmark { font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.wordmark b {
+  font-weight: 800;
+  background: linear-gradient(135deg, #9fe0b6, #f0c987);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.muted { color: var(--muted); }
+
+/* A panel screenshot inside a simple window frame. */
+.window {
+  z-index: 2;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #10131a;
+  border: 1px solid rgb(255 255 255 / .1);
+  box-shadow: 0 40px 90px -30px rgb(0 0 0 / .85), 0 0 0 1px rgb(0 0 0 / .4), 0 0 120px -40px rgb(63 150 112 / .45);
+}
+.window .bar {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: #0f1218;
+  border-bottom: 1px solid rgb(255 255 255 / .06);
+}
+.window .bar i { width: 11px; height: 11px; border-radius: 50%; background: rgb(255 255 255 / .14); }
+.window .bar span { margin-left: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.window img { display: block; width: 100%; }
+.window.light { background: #eceff5; border-color: rgb(20 26 40 / .12); }
+.window.light .bar { background: #f7f8fb; border-color: rgb(20 26 40 / .08); }
+.window.light .bar i { background: rgb(20 26 40 / .14); }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: .45em 1em;
+  border-radius: 999px;
+  background: rgb(255 255 255 / .06);
+  border: 1px solid rgb(255 255 255 / .1);
+  font-weight: 600;
+  color: #d6dbea;
+}
