@@ -421,6 +421,11 @@ td.row-actions button + button { margin-left: 6px; }
 .module input { margin-top: 3px; }
 .module.off { opacity: .6; }
 .module-text { display: flex; flex-direction: column; gap: 2px; }
+.module.addon { cursor: default; }
+.module.addon .module-text { flex: 1; min-width: 0; }
+.module.addon .badge { margin-left: 6px; }
+.bad-text { color: var(--red-text); }
+button.danger-text { color: var(--red); }
 #view-settings > .card { margin-bottom: 16px; }
 
 /* Connection profiles */

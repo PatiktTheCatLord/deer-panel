@@ -216,8 +216,9 @@
   function renderModules(result) {
     $('modules-info').textContent = `Kapalı modülün komutları ${result.perServerCommands ? 'sunucunun komut listesinden hemen kalkar' : 'çalışmaz ("turned off" der)'}, otomatik işleri durur ve sekmesi gizlenir. Kayıtlı veriler silinmez.`;
     const names = Object.fromEntries(result.modules.map(module => [module.key, MODULE_TEXT[module.key]?.[0] ?? module.label]));
+    // Addons are switched on the Eklentiler page.
     $('modules-list').replaceChildren(
-      ...result.modules.map(module => {
+      ...result.modules.filter(module => !module.addon).map(module => {
         const [title, description] = MODULE_TEXT[module.key] ?? [module.label, module.description];
         const box = el('input', { type: 'checkbox', checked: module.enabled });
         box.addEventListener('change', async () => {

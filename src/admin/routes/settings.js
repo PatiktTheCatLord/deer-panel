@@ -82,7 +82,7 @@ async function update({ guild, body }) {
 // ---------- modules ----------
 
 const moduleList = guild => ({
-  modules: Object.entries(MODULES).map(([key, module]) => ({ key, label: module.label, description: module.description, commands: module.commands, requires: module.requires ?? [], enabled: getModules(guild.id)[key] })),
+  modules: Object.entries(MODULES).map(([key, module]) => ({ key, label: module.label, description: module.description, commands: module.commands, requires: module.requires ?? [], addon: module.addon ?? null, enabled: getModules(guild.id)[key] })),
   perServerCommands: PER_SERVER_COMMANDS
 });
 

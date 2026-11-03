@@ -24,6 +24,11 @@ Per server, depending on which modules are on:
 | Owner notes | private notes about a member, author ID, date | `/note` |
 | Showcase | weekly winners and win counts | Showcase |
 | Daily history | joins, leaves and member count per day (no IDs) | Stats |
+| Addon data | whatever installed addons save for the server, under `addonData` | Addons |
+
+**Addons** you install are code written by other people. They run with all of the bot's rights and
+can store or send data of their own; this note only covers the bot itself. Check what an addon does
+before you install it.
 
 **Message text** is not stored in `data/`. When a message is deleted or edited, the mod log posts it to your mod log channel, and a
 short line with its first 150 characters goes to the bot's log (`logs/` or the system journal).

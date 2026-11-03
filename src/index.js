@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
 import { loadCommands, loadModules } from './utils/loadModules.js';
+import { loadAddons } from './utils/addons.js';
 import { flushActivity } from './utils/stats.js';
 
 const token = process.env.DISCORD_TOKEN;
@@ -46,10 +47,15 @@ for (const command of await loadCommands()) {
   console.log(`[COMMAND] /${command.data.name} loaded.`);
 }
 
+// Load addons (addons/<id>/, see ADDONS.md): their commands join the bot's, their events are added below.
+const addons = await loadAddons(client.commands.keys());
+for (const command of addons.commands) client.commands.set(command.data.name, command);
+
 // Load events
-for (const { file, value: event } of await loadModules('events')) {
+const events = (await loadModules('events')).map(({ file, value }) => ({ file, ...value }));
+for (const event of [...events, ...addons.events]) {
   if (!event?.name || !event.execute) {
-    console.warn(`[WARN] File ${file} is missing 'name' or 'execute' export!`);
+    console.warn(`[WARN] File ${event.file} is missing 'name' or 'execute' export!`);
     continue;
   }
 
@@ -58,7 +64,7 @@ for (const { file, value: event } of await loadModules('events')) {
   } else {
     client.on(event.name, (...args) => event.execute(...args));
   }
-  console.log(`[EVENT] ${event.name} listener registered.`);
+  console.log(`[EVENT] ${event.name} listener registered${event.addon ? ` (addon ${event.addon})` : ''}.`);
 }
 
 // Process error handlers

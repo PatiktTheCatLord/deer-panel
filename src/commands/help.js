@@ -2,6 +2,7 @@ import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { COLORS } from '../config.js';
 import { brand, showcaseWords } from '../utils/branding.js';
 import { isEnabled } from '../utils/modules.js';
+import { addonKey, listAddons } from '../utils/addons.js';
 import { t } from '../i18n.js';
 
 // [section title key, [module or null for core, text key]]; lines of modules that are off are left out.
@@ -26,6 +27,14 @@ export default {
       name: t(guildId, `help.${title}`),
       value: lines.filter(([module]) => !module || isEnabled(guildId, module)).map(([, key]) => t(guildId, `help.${key}`, vars)).join('\n')
     })).filter(field => field.value);
+    // Addons: their commands with the description they gave (nothing to translate here).
+    const addonLines = listAddons()
+      .filter(addon => !addon.error && addon.commands.length && isEnabled(guildId, addonKey(addon.id)))
+      .flatMap(addon => addon.commands.map(name => {
+        const command = interaction.client.commands.get(name);
+        return `• \`/${name}\` - ${command?.data.description ?? addon.name}`;
+      }));
+    if (addonLines.length) fields.push({ name: t(guildId, 'help.addonsTitle'), value: addonLines.join('\n').slice(0, 1024) });
 
     const embed = new EmbedBuilder()
       .setColor(COLORS.primary)

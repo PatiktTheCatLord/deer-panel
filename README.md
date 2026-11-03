@@ -27,6 +27,8 @@ Turkish.
 - **Staff tools:** weekly staff report, `/setup` health check, role- and member-based permissions,
   backups.
 - Every module can be switched off. Slash commands register themselves on every start.
+- **Addons:** add your own commands and event handlers in `addons/`, without touching the bot's
+  code. See [ADDONS.md](ADDONS.md).
 
 **Panel** (Windows, Electron)
 - A setup wizard that checks your bot token, builds the invite link and installs the bot, either
@@ -36,6 +38,8 @@ Turkish.
 - Members (filters, CSV export, warnings, notes, verify/timeout/kick/ban), mod log search, rules
   and role panel editors, say/poll, showcase and weekly report previews, stream alerts,
   permissions and every bot setting.
+- An **Addons** page: install an addon from a folder or a .zip, switch it on or off per server,
+  remove it.
 - Several profiles (bots / servers), tray icon, start with Windows, optional PIN lock. Passwords
   and SSH key passphrases are encrypted with Windows (Electron `safeStorage`).
 
@@ -161,6 +165,15 @@ Who may use staff commands can also be changed per role or member in the panel (
 Replies to staff and owner commands are only visible to you. Tunable values are in
 `src/config.js`, and most of them in the panel (**Settings → Bot settings**).
 
+## 🧩 Addons
+
+Addons are folders in `addons/` with an `addon.json` and an `index.js` that exports slash
+commands and Discord event handlers. The bot loads them at startup; updates never touch them. A
+broken addon is skipped and shown with its error in the panel.
+
+Start from [`examples/addons/hello-world`](examples/addons/hello-world) and read
+[ADDONS.md](ADDONS.md). Addons run with all of the bot's rights, so only install ones you trust.
+
 ## 📁 Project structure
 
 ```
@@ -169,7 +182,9 @@ Replies to staff and owner commands are only visible to you. Tunable values are 
 │   ├── events/          # Discord events
 │   ├── admin/           # admin API for the panel (127.0.0.1 only)
 │   ├── locales/         # en.json, tr.json
-│   └── utils/           # storage, modules, moderation, showcase, streams, ...
+│   └── utils/           # storage, modules, addons, moderation, showcase, streams, ...
+├── addons/              # installed addons (not in git; see ADDONS.md)
+├── examples/addons/     # example addon to copy
 ├── panel/               # Deer Panel (Electron)
 ├── deploy/              # systemd units, backup and deploy scripts
 ├── assets/brand/        # logos, banners, screenshots

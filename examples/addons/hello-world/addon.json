@@ -1,0 +1,8 @@
+{
+  "id": "hello-world",
+  "name": "Hello World",
+  "version": "1.0.0",
+  "description": "Example addon: a /hello command with a button, and a 👋 on messages that say hello.",
+  "author": "Deer Panel",
+  "main": "index.js"
+}

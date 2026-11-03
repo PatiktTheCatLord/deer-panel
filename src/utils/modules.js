@@ -5,6 +5,7 @@ import { featureOfCommand, openFeatures, rememberCommandPermissions } from './pe
 // A module that is off: its slash commands are removed from that server, its buttons answer
 // "turned off", and its events / schedulers do nothing there. Saved data is kept.
 // Commands not listed here (help, ping, setup, serverinfo, info, backup) belong to the core.
+// Addons add themselves here as "addon:<id>" when they load (utils/addons.js).
 export const MODULES = {
   welcome: { label: 'Welcome', description: 'Welcome message and auto-role for new members', commands: ['welcome', 'autorole'] },
   verification: { label: 'Verification', description: 'Verify button that unlocks the server', commands: ['verify'] },
@@ -17,10 +18,8 @@ export const MODULES = {
   streams: { label: 'Stream alerts', description: 'Announces when Kick, Twitch or YouTube channels go live', commands: [] }
 };
 
-const MODULE_BY_COMMAND = new Map(Object.entries(MODULES).flatMap(([key, module]) => module.commands.map(name => [name, key])));
-
 export function moduleOfCommand(commandName) {
-  return MODULE_BY_COMMAND.get(commandName) ?? null;
+  return Object.keys(MODULES).find(key => MODULES[key].commands.includes(commandName)) ?? null;
 }
 
 // Everything is on unless switched off.

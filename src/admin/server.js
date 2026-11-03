@@ -10,6 +10,7 @@ import contentRoutes from './routes/content.js';
 import communityRoutes from './routes/community.js';
 import streamRoutes from './routes/streams.js';
 import permissionRoutes from './routes/permissions.js';
+import addonRoutes from './routes/addons.js';
 
 // Admin API for the owner's desktop panel.
 // Listens on 127.0.0.1 only (the panel reaches it through an SSH tunnel) and needs ADMIN_API_TOKEN.
@@ -26,6 +27,7 @@ const ROUTES = [
   ...communityRoutes,
   ...streamRoutes,
   ...permissionRoutes,
+  ...addonRoutes,
   ...statsRoutes
 ];
 

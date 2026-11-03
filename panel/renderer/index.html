@@ -23,6 +23,7 @@
     <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></symbol>
     <symbol id="i-maintenance" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
     <symbol id="i-connections" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01"/><path d="M6 18h.01"/></symbol>
+    <symbol id="i-addons" viewBox="0 0 24 24"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.402 2.402 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.23 8.77c.24-.24.581-.353.917-.303.515.077.877.528 1.073 1.01a2.5 2.5 0 1 0 3.259-3.259c-.482-.196-.933-.558-1.01-1.073-.05-.336.062-.676.303-.917l1.525-1.525A2.402 2.402 0 0 1 12 1.998c.617 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.18-.894.527-.967 1.02Z"/></symbol>
     <symbol id="i-permissions" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
     <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
     <symbol id="i-idea" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
@@ -48,6 +49,7 @@
       <button class="nav" data-view="moderation"><svg class="nav-icon"><use href="#i-moderation"/></svg>Moderasyon</button>
       <button class="nav" data-view="permissions"><svg class="nav-icon"><use href="#i-permissions"/></svg>Yetkiler</button>
       <div class="nav-group">Sistem</div>
+      <button class="nav" data-view="addons"><svg class="nav-icon"><use href="#i-addons"/></svg>Eklentiler</button>
       <button class="nav" data-view="settings"><svg class="nav-icon"><use href="#i-settings"/></svg>Ayarlar</button>
       <button class="nav" data-view="maintenance"><svg class="nav-icon"><use href="#i-maintenance"/></svg>Bakım</button>
       <button class="nav" data-view="connections"><svg class="nav-icon"><use href="#i-connections"/></svg>Bağlantılar</button>
@@ -276,6 +278,30 @@
       </div>
     </section>
 
+    <section class="view" id="view-addons" hidden>
+      <header class="view-header">
+        <h1>Eklentiler</h1>
+        <div class="toolbar">
+          <button class="ghost" id="addons-refresh">↻ Yenile</button>
+          <button id="addons-zip">🗜️ Zip'ten kur</button>
+          <button class="primary" id="addons-folder">📁 Klasörden kur</button>
+        </div>
+      </header>
+      <p class="muted small view-intro">Eklentiler, başkalarının (ya da senin) yazdığı özelliklerdir: kendi komutlarını ve olaylarını bota ekler. Botun klasöründeki addons/ içinde durur, güncellemelerde silinmez. Kurunca ya da kaldırınca bot yeniden başlar; her eklentiyi bu sunucu için ayrıca açıp kapatabilirsin.</p>
+      <div class="stack">
+        <article class="card">
+          <h2>Kurulu eklentiler</h2>
+          <div class="modules" id="addons-list"></div>
+          <p class="muted small"><span>Klasör:</span> <code id="addons-dir" data-no-i18n></code></p>
+        </article>
+        <article class="card" data-fold="closed">
+          <h2>Eklenti yazmak</h2>
+          <p class="muted">Bir eklenti, içinde addon.json ve index.js olan bir klasördür. index.js komutlarını (SlashCommandBuilder) ve Discord olaylarını dışa aktarır; bot açılışta yükler. Başlamak için deponun examples/addons/hello-world klasörünü kopyala, adını ve addon.json içindeki id'yi değiştir. Ayrıntılar deponun ADDONS.md dosyasında.</p>
+          <p class="muted small">Eklentiler botla aynı yetkilerle çalışır. Sadece güvendiğin eklentileri kur.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="view" id="view-stats" hidden>
       <header class="view-header">
         <h1>İstatistik <span class="muted small">son 30 gün</span></h1>
@@ -419,6 +445,7 @@
   <script src="views/streams.js"></script>
   <script src="views/stats.js"></script>
   <script src="views/permissions.js"></script>
+  <script src="views/addons.js"></script>
   <script src="views/settings.js"></script>
   <script src="views/maintenance.js"></script>
   <script src="views/connections.js"></script>

@@ -10,6 +10,8 @@ const { checkDiscordToken, envFile, inviteUrl, serverInstallScript } = require('
 const crypto = require('node:crypto');
 const translateEn = require('./renderer/translate.js')(require('./renderer/i18n-en.js'));
 const net = require('node:net');
+const os = require('node:os');
+const { execFile } = require('node:child_process');
 
 // The bot bundled into this panel (npm run bundle-bot): bot/deer-panel.tgz for servers, bot/app for this computer.
 const BOT_BUNDLE = path.join(__dirname, 'bot');
@@ -58,7 +60,7 @@ let unlocked = false; // false until the PIN is entered (true right away when no
 // Only these API calls can be made from the window.
 const ID = '\\d{17,20}';
 const API_RULES = [
-  ['GET', '/api/(status|settings|faqs|stats|bans|modlog|search|alerts|flagged|rules|rolepanel|showcase|report|botconfig|leaderboard|modules|streams|permissions)(\\?.*)?'],
+  ['GET', '/api/(status|settings|faqs|stats|bans|modlog|search|alerts|flagged|rules|rolepanel|showcase|report|botconfig|leaderboard|modules|streams|permissions|addons)(\\?.*)?'],
   ['GET', '/api/members(\\?.*)?'],
   ['GET', '/api/export/members'],
   ['GET', `/api/members/${ID}`],
@@ -85,8 +87,11 @@ function send(channel, payload) {
   if (window && !window.isDestroyed()) window.webContents.send(channel, payload);
 }
 
+// A server profile is up when its SSH session is; a bot on this computer when it was connected (localbot.js).
+const isConnected = () => Boolean(connection && (connection.local ? connection.connected : connection.ssh));
+
 function requireConnection() {
-  if (!connection?.ssh) throw new Error('VDS bağlantısı yok');
+  if (!isConnected()) throw new Error('VDS bağlantısı yok');
   return connection;
 }
 
@@ -117,7 +122,7 @@ function notify(title, body) {
 }
 
 async function watch() {
-  if (!connection?.ssh) return;
+  if (!isConnected()) return;
   try {
     const status = await connection.serviceStatus();
     if (lastStatus && Date.now() > quietUntil) {
@@ -239,7 +244,7 @@ echo "==> Paket açılıyor"
 rm -rf ${dir}/.release && mkdir -p ${dir}/.release
 tar -xzf ${dir}/.release.tgz -C ${dir}/.release
 test -f ${dir}/.release/package.json && test -d ${dir}/.release/src
-grep -q '"name": "topluluk-discord-bot"' ${dir}/.release/package.json || { echo "✖ Bu paket Deer Panel paketi değil"; false; }
+grep -qE '"name": "deer-panel"' ${dir}/.release/package.json || { echo "✖ Bu paket Deer Panel paketi değil"; false; }
 echo "==> Eski kod saklanıyor"
 rm -rf ${dir}/.previous && mkdir -p ${dir}/.previous
 [ -d ${dir}/src ] && cp -r ${dir}/src ${dir}/package.json ${dir}/package-lock.json ${dir}/.previous/ || true
@@ -320,6 +325,140 @@ function bundleInfo() {
   } catch {
     throw new Error('Bu panel sürümünde gömülü bot yok (panel klasöründe npm run bundle-bot)');
   }
+}
+
+// ---------- addons ----------
+
+// An addon is a folder with addon.json (see ADDONS.md in the repository). The panel copies it into the
+// bot's addons/ folder (this computer) or uploads it (server), then restarts the bot so it loads it.
+const ADDON_ID = /^[a-z0-9][a-z0-9-]{1,39}$/;
+const MAX_ADDON_BYTES = 50 * 1024 * 1024;
+// Windows' own tar (bsdtar) also opens .zip files; Git's tar on the PATH can't.
+const TAR = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'tar.exe');
+let pendingAddon = null; // { dir, manifest, temp }
+
+function runTar(args) {
+  return new Promise((resolve, reject) => {
+    execFile(TAR, args, { windowsHide: true }, (error, stdout, stderr) => (error ? reject(new Error(stderr.trim() || error.message)) : resolve()));
+  });
+}
+
+function folderSize(dir) {
+  let total = 0;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true, recursive: true })) {
+    if (entry.isFile()) total += fs.statSync(path.join(entry.parentPath ?? entry.path, entry.name)).size;
+  }
+  return total;
+}
+
+// Checks the folder the way the bot will (utils/addons.js → readManifest).
+function readAddon(dir) {
+  const file = path.join(dir, 'addon.json');
+  if (!fs.existsSync(file)) throw new Error('Bu klasörde addon.json yok');
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch {
+    throw new Error('addon.json geçerli bir JSON değil');
+  }
+  if (!ADDON_ID.test(manifest.id ?? '')) throw new Error('addon.json içindeki "id" sadece a-z, 0-9 ve "-" içerebilir (2-40 karakter)');
+  const main = typeof manifest.main === 'string' && manifest.main.trim() ? manifest.main.trim() : 'index.js';
+  if (path.isAbsolute(main) || main.split(/[\\/]/).includes('..') || !fs.existsSync(path.join(dir, main))) throw new Error(`Eklentinin ana dosyası bulunamadı: ${main}`);
+  if (folderSize(dir) > MAX_ADDON_BYTES) throw new Error('Eklenti çok büyük (50 MB üstü)');
+  const text = (value, max) => (typeof value === 'string' ? value.trim().slice(0, max) : '');
+  return { id: manifest.id, name: text(manifest.name, 60) || manifest.id, version: text(manifest.version, 20), description: text(manifest.description, 300), author: text(manifest.author, 60) };
+}
+
+function clearPendingAddon() {
+  if (pendingAddon?.temp) fs.rmSync(pendingAddon.temp, { recursive: true, force: true });
+  pendingAddon = null;
+}
+
+async function pickAddon(kind) {
+  const zip = kind === 'zip';
+  const { canceled, filePaths } = await dialog.showOpenDialog(window, {
+    title: L(zip ? 'Eklenti (.zip) seç' : 'Eklenti klasörü seç'),
+    filters: zip ? [{ name: 'Zip', extensions: ['zip'] }] : [],
+    properties: [zip ? 'openFile' : 'openDirectory']
+  });
+  if (canceled || !filePaths[0]) return null;
+  clearPendingAddon();
+  let dir = filePaths[0];
+  let temp = null;
+  if (zip) {
+    if (fs.statSync(dir).size > MAX_ADDON_BYTES) throw new Error('Eklenti çok büyük (50 MB üstü)');
+    temp = fs.mkdtempSync(path.join(os.tmpdir(), 'deer-addon-'));
+    try {
+      await runTar(['-xf', dir, '-C', temp]);
+    } catch (error) {
+      fs.rmSync(temp, { recursive: true, force: true });
+      throw new Error(`Zip açılamadı: ${error.message}`);
+    }
+    // addon.json at the top, or inside the one folder the zip holds.
+    const inner = fs.readdirSync(temp, { withFileTypes: true }).filter(entry => !entry.name.startsWith('.') && entry.name !== '__MACOSX');
+    dir = fs.existsSync(path.join(temp, 'addon.json')) || inner.length !== 1 || !inner[0].isDirectory() ? temp : path.join(temp, inner[0].name);
+  }
+  try {
+    const manifest = readAddon(dir);
+    pendingAddon = { dir, manifest, temp };
+    return manifest;
+  } catch (error) {
+    if (temp) fs.rmSync(temp, { recursive: true, force: true });
+    throw error;
+  }
+}
+
+async function restartForAddons(conn) {
+  expectStop();
+  await conn.serviceAction('restart');
+}
+
+async function installAddon() {
+  if (!pendingAddon) throw new Error('Önce bir eklenti seç');
+  const conn = requireConnection();
+  const { dir, manifest } = pendingAddon;
+  try {
+    if (conn.local) {
+      const target = path.join(conn.dir, 'addons', manifest.id);
+      fs.rmSync(target, { recursive: true, force: true });
+      fs.cpSync(dir, target, { recursive: true });
+    } else {
+      const { appDir, serviceUser } = cfg();
+      const archive = path.join(os.tmpdir(), `deer-addon-${manifest.id}-${Date.now()}.tgz`);
+      try {
+        await runTar(['-czf', archive, '-C', dir, '.']);
+        await conn.uploadFile(archive, `${appDir}/.addon.tgz`);
+      } finally {
+        fs.rmSync(archive, { force: true });
+      }
+      // appDir and serviceUser were checked by profiles.js, the id by ADDON_ID: nothing here needs quoting.
+      const target = `${appDir}/addons/${manifest.id}`;
+      const { code, stderr } = await conn.exec(`set -e; rm -rf ${target}.new; mkdir -p ${target}.new; tar -xzf ${appDir}/.addon.tgz -C ${target}.new; rm -f ${appDir}/.addon.tgz; test -f ${target}.new/addon.json; rm -rf ${target}; mv ${target}.new ${target}; chown -R ${serviceUser}:${serviceUser} ${appDir}/addons`);
+      if (code !== 0) throw new Error(`Sunucuya kurulamadı: ${stderr.trim() || `çıkış kodu ${code}`}`);
+    }
+    await restartForAddons(conn);
+    store.log('Eklenti', `${manifest.id} ${manifest.version} kuruldu`);
+    return manifest;
+  } catch (error) {
+    store.log('Eklenti', `${manifest.id}: ${error.message}`, false);
+    throw error;
+  } finally {
+    clearPendingAddon();
+  }
+}
+
+async function removeAddon(id) {
+  if (!ADDON_ID.test(id ?? '')) throw new Error('Geçersiz eklenti adı');
+  const conn = requireConnection();
+  if (conn.local) {
+    fs.rmSync(path.join(conn.dir, 'addons', id), { recursive: true, force: true });
+  } else {
+    const { code, stderr } = await conn.exec(`rm -rf ${cfg().appDir}/addons/${id}`);
+    if (code !== 0) throw new Error(`Sunucudan silinemedi: ${stderr.trim() || `çıkış kodu ${code}`}`);
+  }
+  await restartForAddons(conn);
+  store.log('Eklenti', `${id} kaldırıldı`);
+  return true;
 }
 
 // ---------- setup wizard (new bots) ----------
@@ -657,6 +796,10 @@ handle('api', async (method, apiPath, body) => {
   }
 });
 handle('update:pick', () => pickRelease());
+handle('addons:pick', kind => pickAddon(kind));
+handle('addons:cancel', () => clearPendingAddon());
+handle('addons:install', () => installAddon());
+handle('addons:remove', id => removeAddon(id));
 handle('update:run', () => runUpdate());
 handle('profiles:list', () => profiles.list());
 handle('setup:checkToken', async token => {

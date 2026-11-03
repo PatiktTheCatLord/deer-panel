@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { REST, Routes } from 'discord.js';
 import { loadCommands } from './utils/loadModules.js';
+import { listAddons, loadAddons } from './utils/addons.js';
 import { COMMAND_MODE, commandEnabled, commandPayload } from './utils/modules.js';
 
 const token = process.env.DISCORD_TOKEN;
@@ -12,12 +13,19 @@ const isPlaceholder = value => !value || value.includes('YOUR_');
 const checkOnly = process.argv.includes('--check');
 
 const commands = [];
-for (const command of await loadCommands()) {
+const own = await loadCommands();
+const addons = await loadAddons(own.map(command => command.data.name));
+for (const command of [...own, ...addons.commands]) {
   commands.push(commandPayload(command));
-  console.log(`[LOADED] Prepared /${command.data.name} command.`);
+  console.log(`[LOADED] Prepared /${command.data.name} command${command.addon ? ` (addon ${command.addon})` : ''}.`);
 }
+const broken = listAddons().filter(addon => addon.error);
 
 if (checkOnly) {
+  if (broken.length) {
+    console.error(`\n❌ ${broken.length} addon(s) could not be loaded: ${broken.map(addon => `${addon.id} (${addon.error})`).join(', ')}`);
+    process.exit(1);
+  }
   console.log(`\n✅ ${commands.length} commands built successfully (check only, nothing was registered).`);
   process.exit(0);
 }

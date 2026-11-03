@@ -12,6 +12,7 @@
     "title": "🐾 {name} Bot — Komut Rehberi",
     "intro": "Kullanabileceğin komutlar ve özellikler:",
     "communityTitle": "🐾 Topluluk",
+    "addonsTitle": "🧩 Eklentiler",
     "faq": "• `/faq` - {name} hakkında sık sorulan soruların cevapları.",
     "top": "• `/top` - Sıralama: mesaj ya da ses süresi.",
     "showcase": "• {item} paylaşımını vitrin kanalına at, ❤️ topla ve **{title}** ol!",

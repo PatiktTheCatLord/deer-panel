@@ -70,7 +70,9 @@ const DEFAULT_GUILD_SETTINGS = {
   // Stream alerts (see utils/streams.js): channel, role, template, platform keys and the watched channels
   streams: null,
   // Who may use staff features (utils/permissions.js)
-  permissions: null
+  permissions: null,
+  // Addons' own data: { addonId: { ... } } (utils/addons.js → context.data)
+  addonData: {}
 };
 
 // Ensure data directory and settings file exist

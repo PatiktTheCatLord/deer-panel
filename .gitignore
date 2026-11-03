@@ -22,5 +22,8 @@ Thumbs.db
 releases/
 src/build.json
 
+# Installed addons (the example to copy is in examples/addons/)
+/addons/
+
 # Bot bundled into the panel (npm run bundle-bot)
 panel/bot/

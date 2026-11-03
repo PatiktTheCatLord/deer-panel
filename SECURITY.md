@@ -28,3 +28,5 @@ notes unless you'd rather stay anonymous.
   (`deploy/deploy-vds.sh` sets `chmod 600`).
 - Set a PIN in the panel if other people use your computer.
 - Give the bot only the permissions it needs, and keep its role below your staff roles.
+- Addons run with all of the bot's rights. Only install addons whose code you have read or whose
+  author you trust.

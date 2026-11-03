@@ -12,6 +12,7 @@
     "title": "🐾 {name} Bot — Command Guide",
     "intro": "Here is a list of available slash commands and features:",
     "communityTitle": "🐾 Community",
+    "addonsTitle": "🧩 Addons",
     "faq": "• `/faq` - Answers to common questions about {name}.",
     "top": "• `/top` - Leaderboard: messages or voice time.",
     "showcase": "• Post your {item} in the showcase channel and collect ❤️ to become **{title}**!",
