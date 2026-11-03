@@ -1,5 +1,3 @@
-# Shows a "Sponsor" button on the GitHub repository. Fill in the accounts you open and remove the #.
-# patreon: your-patreon-name
-# ko_fi: your-kofi-name
-# github: your-github-name
-# custom: ["https://..."]
+# Shows a "Sponsor" button on the GitHub repository.
+patreon: DeerPanel
+# github: your-github-name   (remove the # once GitHub Sponsors is approved)

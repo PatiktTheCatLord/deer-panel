@@ -200,8 +200,10 @@ Start from [`examples/addons/hello-world`](examples/addons/hello-world) and read
 
 Deer Panel is free. If it helps your community, you can support development:
 
-- **Patreon** and **GitHub Sponsors**: the **Sponsor** button at the top of this repository, or
-  **Support us on Patreon** in the panel's sidebar.
+- **[Patreon](https://www.patreon.com/cw/DeerPanel/membership)**: monthly memberships (Fawn, Stag,
+  Grove). Also behind **Support us on Patreon** in the panel's sidebar and the repository's
+  **Sponsor** button.
+- **GitHub Sponsors**: coming soon.
 - **Help and questions:** our [Discord server](https://discord.gg/hucz7bACBc).
 - **Paid setup service:** don't want to set it up yourself? We install the bot on your computer
   or your own server, connect it to your Discord server and configure channels, roles and

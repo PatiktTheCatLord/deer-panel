@@ -281,7 +281,7 @@ window.panel.onConnection(({ connected }) => {
 window.panel.onAlert(({ title, body }) => toast(`${title} — ${body}`, /durdu|çöktü|🚨/.test(title)));
 $('reconnect').addEventListener('click', connect);
 for (const id of ['community-link', 'picker-community']) $(id).addEventListener('click', () => window.panel.openCommunity());
-// Patreon: the sidebar button is always there; until the page exists (main.js → PATREON_URL) it says so.
+// Patreon: the sidebar button is always there; without a link (main.js → PATREON_URL) it says the page is coming.
 // The profile picker's button shows only once there is a link.
 window.panel.links().then(links => {
   $('picker-patreon').hidden = !links.patreon;

@@ -25,8 +25,8 @@ let profiles = null;
 const cfg = () => profiles.active();
 // Our Discord server (permanent invite). Fixed here: the window can only ask to open this one.
 const COMMUNITY_URL = 'https://discord.gg/hucz7bACBc';
-// Our Patreon page; empty = the Patreon buttons stay hidden. PANEL_PATREON_URL (patreon.com only) overrides it for testing.
-const PATREON_URL = /^https:\/\/(www\.)?patreon\.com\//.test(process.env.PANEL_PATREON_URL ?? '') ? process.env.PANEL_PATREON_URL : '';
+// Our Patreon page. PANEL_PATREON_URL (patreon.com only) overrides it for testing.
+const PATREON_URL = /^https:\/\/(www\.)?patreon\.com\//.test(process.env.PANEL_PATREON_URL ?? '') ? process.env.PANEL_PATREON_URL : 'https://www.patreon.com/cw/DeerPanel/membership';
 const RELEASE_NAME = /^deer-panel-[\w.+-]+\.tgz$/;
 const ICON = path.join(__dirname, 'assets', 'icon.png');
 const BACKUP_NAME = /^settings-\d{4}-\d{2}-\d{2}\.json\.gz$/;
