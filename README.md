@@ -4,6 +4,12 @@
 
 # Deer Panel
 
+<p>
+  <a href="https://discord.gg/hucz7bACBc"><img src="https://img.shields.io/badge/Discord-Join%20us-5865F2?logo=discord&logoColor=white" alt="Join our Discord server"></a>
+  <a href="https://www.patreon.com/cw/DeerPanel/membership"><img src="https://img.shields.io/badge/Patreon-Support-F96854?logo=patreon&logoColor=white" alt="Support us on Patreon"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue" alt="License: AGPL-3.0"></a>
+</p>
+
 **Deer Panel** is a free Windows desktop app plus a Discord bot (discord.js v14) for running a
 community server. You run your own bot with your own token, on your own computer or on a Linux
 server, and manage everything from the panel: members, moderation, welcome and verification,
