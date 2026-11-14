@@ -734,6 +734,10 @@
     'Bağlantı profili yok': 'No connection profile',
     'NO_PROFILE: Henüz bağlantı profili yok — Bağlantılar bölümünden ekle.': 'NO_PROFILE: No connection profile yet — add one in Connections.',
     'Bağlantı profili kaydedildi': 'Connection profile saved',
+    'HOST_KEY_CHANGED: Sunucunun kimliği (SSH host anahtarı) değişti, bağlanılmadı. Beklenen {0}, gelen {1}. Biri araya girmeye çalışıyor olabilir. Sunucuyu yeniden kurmadıysan bağlanma. Yeniden kurduysan sunucuda `ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub` ile parmak izini karşılaştır; aynıysa profili Bağlantılar bölümünde yeniden kaydet.':
+      "HOST_KEY_CHANGED: The server's identity (SSH host key) changed, so the panel did not connect. Expected {0}, got {1}. Someone may be trying to get in between. If you did not reinstall the server, do not connect. If you did, compare the fingerprint on the server with `ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub`; if it matches, save the profile again in Connections.",
+    'SSH host anahtarı': 'SSH host key',
+    '{0} için yeniden kaydedilecek': 'will be pinned again for {0}',
     'Bağlantı profili silindi': 'Connection profile deleted',
     'Bağlantı profili değişti': 'Connection profile changed',
     'Sunucu bağlantısı': 'Server connection',

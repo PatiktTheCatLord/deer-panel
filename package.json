@@ -9,7 +9,8 @@
     "deploy": "node src/deploy-commands.js",
     "check": "node src/deploy-commands.js --check",
     "check:locales": "node src/check-locales.js",
-    "release": "node deploy/make-release.mjs"
+    "release": "node deploy/make-release.mjs",
+    "test": "node --test"
   },
   "keywords": [
     "discord",

@@ -3,6 +3,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const { app, BrowserWindow, Menu, Notification, Tray, dialog, ipcMain, shell } = require('electron');
 const { VdsConnection } = require('./ssh');
+const { KnownHosts } = require('./knownHosts');
 const { LocalStore, toCsv } = require('./local');
 const { ProfileStore } = require('./profiles');
 const { LocalBot, installLocalBot } = require('./localbot');
@@ -55,6 +56,7 @@ let tray = null;
 let connection = null;
 let quitting = false;
 let store = null;
+let knownHosts = null; // pinned SSH host keys (knownHosts.js)
 let unlocked = false; // false until the PIN is entered (true right away when no PIN is set)
 
 // Only these API calls can be made from the window.
@@ -834,6 +836,8 @@ handle('setup:bundle', () => {
 handle('profiles:save', (input, secrets) => {
   const id = profiles.save(input ?? {}, secrets ?? {});
   store.log('Bağlantı profili kaydedildi', input?.name ?? '');
+  // Saving a server profile on purpose accepts its host key anew (after a reinstall; knownHosts.js).
+  if (input?.type !== 'local' && input?.host && knownHosts.forget(input.host, input.port ?? 22)) store.log('SSH host anahtarı', `${input.host} için yeniden kaydedilecek`);
   return { id, ...profiles.list() };
 });
 handle('profiles:remove', id => {
@@ -874,6 +878,8 @@ if (!app.requestSingleInstanceLock() && !process.env.PANEL_SCREENSHOT) {
   app.whenReady().then(() => {
     store = new LocalStore(app.getPath('userData'));
     profiles = new ProfileStore(app.getPath('userData'), LEGACY_CONFIG);
+    knownHosts = new KnownHosts(app.getPath('userData'));
+    VdsConnection.knownHosts = knownHosts;
     unlocked = !store.hasPin();
     loadLanguage();
     createTray();

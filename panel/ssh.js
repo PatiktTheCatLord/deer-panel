@@ -24,6 +24,19 @@ class VdsConnection extends EventEmitter {
         : {};
       if (this.config.password) auth.password = this.config.password;
       const ssh = new Client();
+      // The server's host key must be the one pinned at the first connection (knownHosts.js).
+      const knownHosts = VdsConnection.knownHosts;
+      if (!knownHosts) return reject(new Error('Host key store is not set up'));
+      let hostKeyError = null;
+      const hostVerifier = key => {
+        try {
+          knownHosts.check(this.config.host, this.config.port, key);
+          return true;
+        } catch (error) {
+          hostKeyError = error;
+          return false;
+        }
+      };
       ssh
         .on('ready', async () => {
           this.ssh = ssh;
@@ -35,7 +48,7 @@ class VdsConnection extends EventEmitter {
             reject(error);
           }
         })
-        .on('error', reject)
+        .on('error', error => reject(hostKeyError ?? error))
         .on('close', () => {
           this.ssh = null;
           this.tunnel?.close();
@@ -47,6 +60,7 @@ class VdsConnection extends EventEmitter {
           port: this.config.port,
           username: this.config.username,
           ...auth,
+          hostVerifier,
           keepaliveInterval: 15_000,
           readyTimeout: 20_000
         });
